@@ -303,13 +303,13 @@ section { padding: 120px 0; position: relative; }
     color: var(--muted); font-size: 15px; line-height: 1.7;
 }
 .faq-item.open .faq-a { grid-template-rows: 1fr; }
-.faq-a > div {
+.faq-a > .faq-body {
     overflow: hidden; min-height: 0;
-    padding-bottom: 24px; padding-right: 46px;
+    padding-right: 46px; padding-bottom: 24px;
     opacity: 0; transform: translateY(10px);
-    transition: opacity .4s ease .1s, transform .4s ease .1s;
+    transition: opacity .35s ease, transform .35s ease;
 }
-.faq-item.open .faq-a > div { opacity: 1; transform: none; }
+.faq-item.open .faq-a > .faq-body { opacity: 1; transform: none; }
 
 /* Testimonials */
 .reviews { background: var(--surface); }
@@ -744,11 +744,11 @@ footer p { color: var(--muted); font-size: 13.5px; }
             <h2>Часто <em>задаваемые</em> вопросы</h2>
         </div>
         <div class="list">
-            <div class="faq-item reveal"><button class="faq-q">Нужна ли спортивная подготовка?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Нет. У нас тренировки для любого уровня — от новичков до опытных. Тренер адаптирует нагрузку под тебя.</div></div></div>
-            <div class="faq-item reveal"><button class="faq-q">Что взять с собой на первую тренировку?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Спортивную одежду, кроссовки, бутылку воды и полотенце. Всё остальное есть в зале.</div></div></div>
-            <div class="faq-item reveal"><button class="faq-q">Как записаться через Telegram?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Напиши нашему боту — выбери направление, дату и время. Оплата картой, СБП или Telegram Stars.</div></div></div>
-            <div class="faq-item reveal"><button class="faq-q">Можно ли заморозить абонемент?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Да. Бесплатная заморозка до 14 дней. При болезни — продлеваем без вопросов.</div></div></div>
-            <div class="faq-item reveal"><button class="faq-q">Сколько человек в группе?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">До 10 человек. Это позволяет тренеру видеть каждого и поправлять технику.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Нужна ли спортивная подготовка?<span class="icon">+</span></button><div class="faq-a"><div class="faq-body">Нет. У нас тренировки для любого уровня — от новичков до опытных. Тренер адаптирует нагрузку под тебя.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Что взять с собой на первую тренировку?<span class="icon">+</span></button><div class="faq-a"><div class="faq-body">Спортивную одежду, кроссовки, бутылку воды и полотенце. Всё остальное есть в зале.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Как записаться через Telegram?<span class="icon">+</span></button><div class="faq-a"><div class="faq-body">Напиши нашему боту — выбери направление, дату и время. Оплата картой, СБП или Telegram Stars.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Можно ли заморозить абонемент?<span class="icon">+</span></button><div class="faq-a"><div class="faq-body">Да. Бесплатная заморозка до 14 дней. При болезни — продлеваем без вопросов.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Сколько человек в группе?<span class="icon">+</span></button><div class="faq-a"><div class="faq-body">До 10 человек. Это позволяет тренеру видеть каждого и поправлять технику.</div></div></div>
         </div>
     </div>
 </section>
@@ -761,19 +761,19 @@ footer p { color: var(--muted); font-size: 13.5px; }
                     <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
                     <p>Пришла «посмотреть» — и осталась на год. За 3 месяца минус 12 кг: тренер собрал программу под мой график, а запись через бота сделала всё это просто привычкой.</p>
-                    <div class="who"><b>Ирина</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>HR-менеджер, Москва</span></div>
+                    <div class="who"><b>Ирина</b></div>
                 </div>
                 <div class="testi-slide">
                     <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
                     <p>Обходил залы годами — ни один не держал дольше пары месяцев. Здесь группы до 10 человек, и тренер правда следит за техникой. Через полгода жим вырос на 15 кг.</p>
-                    <div class="who"><b>Дмитрий</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>разработчик, СПб</span></div>
+                    <div class="who"><b>Дмитрий</b></div>
                 </div>
                 <div class="testi-slide">
                     <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
                     <p>Ходила за растяжкой, а ушла сутулость и перестала болеть спина. Атмосфера спокойная, без «качалочного» пафоса. Запись из Telegram — 10 секунд, и ты в расписании.</p>
-                    <div class="who"><b>Алёна</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>дизайнер, Казань</span></div>
+                    <div class="who"><b>Алёна</b></div>
                 </div>
             </div>
             <div class="testi-nav">
