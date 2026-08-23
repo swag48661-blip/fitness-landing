@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PULSE FIT — фитнес-студия | Первая тренировка бесплатно</title>
+<meta name="description" content="Функциональный зал, групповые и персональные тренировки. Первая тренировка бесплатно. Запись через Telegram за 15 минут.">
+<meta property="og:title" content="PULSE FIT — фитнес-студия">
+<meta property="og:description" content="Первая тренировка бесплатно. Функциональный зал, HIIT, йога, силовой тренинг.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f0d'/><text x='50' y='68' font-size='56' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23ccff33'>PF</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #0b0f0d;
+    --bg-soft: #10150f;
+    --card: #151c16;
+    --line: #232b23;
+    --text: #eef3ea;
+    --muted: #9aa69b;
+    --accent: #ccff33;
+    --accent-dark: #9cc400;
+    --radius: 18px;
+    --shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+h1, h2, h3, .nav-logo { font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: .03em; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1140px, 92%); margin-inline: auto; }
+section { padding: 96px 0; position: relative; }
+
+/* Nav */
+.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    backdrop-filter: blur(14px);
+    background: rgba(11, 15, 13, .75);
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+    transition: background .3s, box-shadow .3s;
+}
+.nav.scrolled { background: rgba(11, 15, 13, .95); box-shadow: 0 8px 30px rgba(0, 0, 0, .35); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.nav-logo { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.nav-logo .mark {
+    width: 12px; height: 26px; border-radius: 4px;
+    background: linear-gradient(var(--accent), var(--accent-dark));
+    transform: skew(-12deg);
+    display: inline-block;
+    box-shadow: 0 0 16px rgba(204, 255, 51, .55);
+}
+.nav-links { display: flex; gap: 26px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.nav-links a { position: relative; }
+.nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px;
+    background: var(--accent); transition: width .25s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+    padding: 10px 20px; border-radius: 10px;
+    background: var(--accent); color: #0b0f0d; font-weight: 700; font-size: 14px;
+    transition: transform .15s, box-shadow .15s;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(204, 255, 51, .4); }
+.burger { display: none; background: none; border: 0; cursor: pointer; z-index: 10; }
+.burger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: .3s; }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Hero */
+.hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding-top: 68px;
+    background:
+        linear-gradient(180deg, rgba(11,15,13,.93) 0%, rgba(11,15,13,.6) 55%, var(--bg) 100%),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+}
+.hero .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(204, 255, 51, .4); color: var(--accent);
+    background: rgba(204, 255, 51, .08);
+    padding: 7px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;
+    margin-bottom: 22px;
+}
+.hero h1 {
+    font-size: clamp(44px, 7vw, 84px); line-height: .98;
+    max-width: 760px; font-weight: 700;
+}
+.hero h1 .accent { color: var(--accent); text-shadow: 0 0 40px rgba(204, 255, 51, .4); }
+.hero p {
+    margin-top: 22px; font-size: 18px; color: var(--muted);
+    max-width: 520px;
+}
+.hero-actions { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+.btn {
+    display: inline-block; padding: 15px 30px; border-radius: 12px;
+    font-weight: 700; font-size: 15px; cursor: pointer; border: 0;
+    transition: transform .15s, box-shadow .15s, background .2s;
+}
+.btn-primary { background: var(--accent); color: #0b0f0d; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(204, 255, 51, .4); }
+.btn-ghost { border: 1px solid rgba(255, 255, 255, .2); color: var(--text); background: rgba(255,255,255,.02); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats {
+    display: grid; grid-template-columns: repeat(3, auto); gap: 48px;
+    margin-top: 72px; padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    max-width: 640px;
+}
+.hero-stats .num { font-family: "Oswald"; font-size: 42px; font-weight: 700; color: var(--accent); }
+.hero-stats .lbl { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+
+/* Section head */
+.sec-head { margin-bottom: 48px; }
+.sec-tag {
+    font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px;
+}
+.sec-head h2 { font-size: clamp(30px, 4.4vw, 48px); line-height: 1.05; }
+.sec-head p { color: var(--muted); margin-top: 14px; max-width: 560px; }
+
+/* Features */
+.features { background: var(--bg-soft); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.feature {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.feature:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .4); box-shadow: var(--shadow); }
+.feature .ico {
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(204, 255, 51, .1); color: var(--accent); font-size: 22px; margin-bottom: 18px;
+}
+.feature h3 { font-size: 19px; margin-bottom: 8px; }
+.feature p { color: var(--muted); font-size: 14px; }
+
+/* Programs */
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.program {
+    position: relative; border-radius: var(--radius); overflow: hidden; height: 340px;
+    display: flex; align-items: flex-end; isolation: isolate;
+}
+.program img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .5s; }
+.program:hover img { transform: scale(1.06); }
+.program::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, transparent 30%, rgba(8, 11, 9, .95) 100%);
+    transition: background .3s;
+}
+.program:hover::after { background: linear-gradient(180deg, transparent 0%, rgba(8, 11, 9, .97) 85%); }
+.program-body { padding: 24px; width: 100%; transform: translateY(6px); transition: transform .3s; }
+.program:hover .program-body { transform: translateY(0); }
+.program h3 { font-size: 24px; }
+.program p { color: var(--muted); font-size: 14px; max-height: 0; overflow: hidden; transition: max-height .3s; }
+.program:hover p { max-height: 90px; }
+
+/* Gallery */
+.gallery { background: var(--bg-soft); }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.gallery-item { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+
+/* Trainers */
+.trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.trainer {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+}
+.trainer:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.trainer img { width: 100%; height: 300px; object-fit: cover; }
+.trainer-body { padding: 20px; }
+.trainer h3 { font-size: 20px; }
+.trainer .role { color: var(--accent); font-size: 13px; font-weight: 600; margin: 4px 0 10px; }
+.trainer p { color: var(--muted); font-size: 14px; }
+
+/* Pricing */
+.pricing { background: var(--bg-soft); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+.price-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; position: relative;
+    transition: transform .2s, border-color .2s;
+}
+.price-card:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .3); }
+.price-card.popular { border-color: var(--accent); box-shadow: var(--shadow); }
+.price-card .tag {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #0b0f0d; font-size: 12px; font-weight: 700;
+    padding: 6px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: .06em;
+}
+.price-card h3 { font-size: 20px; }
+.price-card .price { font-family: "Oswald"; font-size: 44px; font-weight: 700; color: var(--accent); line-height: 1; }
+.price-card .price span { font-size: 16px; color: var(--muted); font-family: "Inter"; font-weight: 500; }
+.price-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.price-card li { display: flex; gap: 10px; font-size: 14px; color: var(--muted); }
+.price-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+.price-card .btn { margin-top: auto; text-align: center; }
+
+/* Schedule */
+.schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+.sched-day {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 12px;
+    text-align: center; transition: border-color .2s;
+}
+.sched-day:hover { border-color: rgba(204, 255, 51, .35); }
+.sched-day.today { border-color: var(--accent); }
+.sched-day .d { font-family: "Oswald"; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.sched-day .slot { font-size: 12px; color: var(--muted); padding: 5px 0; border-top: 1px dashed var(--line); }
+.sched-day .slot.hot { color: var(--accent); font-weight: 600; }
+
+/* Testimonials */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.testi {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px;
+    transition: transform .2s, border-color .2s;
+}
+.testi:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .3); }
+.testi .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 14px; }
+.testi p { color: var(--muted); font-size: 14px; }
+.testi .who { margin-top: 18px; display: flex; align-items: center; gap: 12px; }
+.testi .who .av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: grid; place-items: center; font-weight: 700; color: #0b0f0d; }
+.testi .who b { font-size: 14px; display: block; }
+.testi .who span { font-size: 12px; color: var(--muted); }
+
+/* CTA / booking */
+.cta { padding: 0; }
+.cta-box {
+    border-radius: 24px; overflow: hidden; position: relative; isolation: isolate;
+    padding: 72px 48px;
+    background:
+        linear-gradient(90deg, rgba(11,15,13,.96) 0%, rgba(11,15,13,.82) 60%, rgba(11,15,13,.55) 100%),
+        url("https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+}
+.cta-box h2 { font-size: clamp(28px, 4vw, 44px); max-width: 460px; }
+.cta-box p { color: var(--muted); margin: 14px 0 30px; max-width: 440px; }
+.booking { display: flex; flex-direction: column; gap: 12px; max-width: 460px; }
+.booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.booking input, .booking select {
+    width: 100%; padding: 14px 16px; border-radius: 12px;
+    background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14);
+    color: var(--text); font-size: 15px; font-family: inherit; outline: none;
+    transition: border-color .2s;
+}
+.booking input:focus, .booking select:focus { border-color: var(--accent); }
+.booking select option { background: var(--card); }
+.booking .btn { text-align: center; }
+.booking .ok {
+    display: none; padding: 16px; border-radius: 12px;
+    background: rgba(204, 255, 51, .1); border: 1px solid rgba(204, 255, 51, .4);
+    color: var(--accent); font-weight: 600; font-size: 14px;
+}
+.booking .ok.show { display: block; }
+
+/* Floating Telegram */
+.float-tg {
+    position: fixed; right: 22px; bottom: 22px; z-index: 90;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #2aabee; display: grid; place-items: center;
+    box-shadow: 0 10px 30px rgba(42, 171, 238, .5);
+    transition: transform .2s;
+}
+.float-tg:hover { transform: scale(1.08); }
+.float-tg svg { width: 30px; height: 30px; fill: #fff; }
+
+/* Footer */
+footer { border-top: 1px solid rgba(255, 255, 255, .06); padding: 40px 0; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+footer p { color: var(--muted); font-size: 13px; }
+.footer-links { display: flex; gap: 20px; font-size: 14px; color: var(--muted); }
+.footer-links a:hover { color: var(--accent); }
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.on { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+    .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; background: rgba(11,15,13,.98); padding: 20px 8%; gap: 16px; border-bottom: 1px solid var(--line); }
+    .nav-links.open { display: flex; }
+    .burger { display: block; }
+    .hero-stats { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .programs-grid, .trainers-grid, .pricing-grid, .testi-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:first-child { grid-column: span 2; }
+    .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+    .booking-row { grid-template-columns: 1fr; }
+    section { padding: 68px 0; }
+}
+@media (max-width: 560px) {
+    .hero-stats { grid-template-columns: 1fr; gap: 16px; }
+    .cta-box { padding: 48px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="#hero" class="nav-logo"><span class="mark"></span>PULSE&nbsp;FIT</a>
+        <div class="nav-links" id="menu">
+            <a href="#features">Почему мы</a>
+            <a href="#programs">Тренировки</a>
+            <a href="#gallery">Зал</a>
+            <a href="#schedule">Расписание</a>
+            <a href="#trainers">Тренеры</a>
+            <a href="#pricing">Тарифы</a>
+            <a href="#reviews">Отзывы</a>
+        </div>
+        <a class="nav-cta" href="#book">Пробная тренировка</a>
+        <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<header class="hero" id="hero">
+    <div class="container">
+        <div class="badge">⚡ Первая тренировка — бесплатно</div>
+        <h1>Тренируйся, где каждый <span class="accent">поход в зал</span> даёт результат</h1>
+        <p>Функциональный зал, опытные тренеры и персональные программы. Приходи на бесплатную тренировку — почувствуй разницу.</p>
+        <div class="hero-actions">
+            <a href="#book" class="btn btn-primary">Записаться бесплатно</a>
+            <a href="#pricing" class="btn btn-ghost">Смотреть тарифы</a>
+        </div>
+        <div class="hero-stats">
+            <div><div class="num"><span data-count="15">0</span>+</div><div class="lbl">тренеров</div></div>
+            <div><div class="num"><span data-count="12">0</span></div><div class="lbl">направлений</div></div>
+            <div><div class="num"><span data-count="800">0</span>+</div><div class="lbl">участников</div></div>
+        </div>
+    </div>
+</header>
+
+<section class="features" id="features">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Почему мы</div>
+            <h2>Зал, в который хочется возвращаться</h2>
+            <p>Никаких перегруженных фитнес-клубов — только то, что работает на твой результат.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature reveal"><div class="ico">🏋️</div><h3>Функциональный зал</h3><p>Зона кроссфита, свободные веса, кардио-зона и канаты — всё для интенсивных тренировок.</p></div>
+            <div class="feature reveal"><div class="ico">📋</div><h3>Персональные программы</h3><p>План тренировок под твою цель: похудение, сила, выносливость или форма.</p></div>
+            <div class="feature reveal"><div class="ico">🧑‍🏫</div><h3>Тренер на каждой тренировке</h3><p>Групповые тренировки до 10 человек — тебя видят и поправляют технику.</p></div>
+            <div class="feature reveal"><div class="ico">📲</div><h3>Запись через Telegram</h3><p>Бронь тренировки и абонементы — прямо в Telegram-боте. Без звонков и очередей.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="programs" id="programs">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Направления</div>
+            <h2>Выбери свою тренировку</h2>
+            <p>Групповые и персональные форматы для любого уровня подготовки.</p>
+        </div>
+        <div class="programs-grid">
+            <a href="#book" class="program reveal">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Силовые тренировки" loading="lazy">
+                <div class="program-body"><h3>Силовой тренинг</h3><p>Свободные веса, база и прогрессия. Для силы и рельефа.</p></div>
+            </a>
+            <a href="#book" class="program reveal">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80" alt="Функциональный тренинг" loading="lazy">
+                <div class="program-body"><h3>Функциональный</h3><p>Кроссфит-элементы, канаты, работа с собственным весом.</p></div>
+            </a>
+            <a href="#book" class="program reveal">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80" alt="Йога и растяжка" loading="lazy">
+                <div class="program-body"><h3>Йога и стретчинг</h3><p>Гибкость, осанка и восстановление после нагрузок.</p></div>
+            </a>
+            <a href="#book" class="program reveal">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="HIIT" loading="lazy">
+                <div class="program-body"><h3>HIIT</h3><p>Интервальные тренировки для жиросжигания за 40 минут.</p></div>
+            </a>
+            <a href="#book" class="program reveal">
+                <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=900&q=80" alt="Бокс" loading="lazy">
+                <div class="program-body"><h3>Бокс и ММА</h3><p>Ударная техника, работа в парах, координация и реакция.</p></div>
+            </a>
+            <a href="#book" class="program reveal">
+                <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80" alt="Персональные тренировки" loading="lazy">
+                <div class="program-body"><h3>Персонально</h3><p>Тренировка 1 на 1 с тренером под твою конкретную цель.</p></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Наш зал</div>
+            <h2>Пространство, где комфортно тренироваться</h2>
+            <p>Свежий ремонт, новая техника и зонирование под любой формат тренировок.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Зал для тренировок" loading="lazy"></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=900&q=80" alt="Стойка со свободными весами" loading="lazy"></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=900&q=80" alt="Тренажёрная зона" loading="lazy"></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=900&q=80" alt="Зона растяжки" loading="lazy"></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80" alt="Зона свободных весов" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<section class="schedule" id="schedule">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Расписание</div>
+            <h2>Групповые тренировки на неделю</h2>
+        </div>
+        <div class="schedule-grid">
+            <div class="sched-day reveal"><div class="d">Пн</div><div class="slot hot">08:00 HIIT</div><div class="slot">19:00 Сила</div><div class="slot">20:30 Бокс</div></div>
+            <div class="sched-day reveal"><div class="d">Вт</div><div class="slot hot">09:00 Йога</div><div class="slot">19:00 Функц.</div><div class="slot">20:30 ММА</div></div>
+            <div class="sched-day reveal"><div class="d">Ср</div><div class="slot hot">08:00 HIIT</div><div class="slot">19:00 Сила</div><div class="slot">20:30 Перс.</div></div>
+            <div class="sched-day reveal"><div class="d">Чт</div><div class="slot hot">09:00 Йога</div><div class="slot">19:00 Функц.</div><div class="slot">20:30 Бокс</div></div>
+            <div class="sched-day reveal"><div class="d">Пт</div><div class="slot hot">08:00 HIIT</div><div class="slot">19:00 Сила</div><div class="slot">20:30 Перс.</div></div>
+            <div class="sched-day reveal"><div class="d">Сб</div><div class="slot">10:00 Функц.</div><div class="slot hot">12:00 Йога</div><div class="slot">14:00 Бокс</div></div>
+            <div class="sched-day reveal"><div class="d">Вс</div><div class="slot hot">11:00 Йога</div><div class="slot">13:00 Стретч.</div><div class="slot">—</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="trainers" id="trainers">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Тренеры</div>
+            <h2>Команда, которая ведёт к цели</h2>
+            <p>Каждый тренер — действующий спортсмен с опытом работы от 5 лет.</p>
+        </div>
+        <div class="trainers-grid">
+            <div class="trainer reveal">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Анна Соколова" loading="lazy">
+                <div class="trainer-body"><h3>Анна Соколова</h3><div class="role">Функциональный тренинг, HIIT</div><p>Мастер спорта по кроссфиту. Помогает худеть без голода и выгорания.</p></div>
+            </div>
+            <div class="trainer reveal">
+                <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80" alt="Максим Орлов" loading="lazy">
+                <div class="trainer-body"><h3>Максим Орлов</h3><div class="role">Силовой тренинг</div><p>КМС по пауэрлифтингу. Строит программы для силы и рельефа.</p></div>
+            </div>
+            <div class="trainer reveal">
+                <img src="https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=800&q=80" alt="Кира Лебедева" loading="lazy">
+                <div class="trainer-body"><h3>Кира Лебедева</h3><div class="role">Йога, растяжка</div><p>Сертифицированный инструктор. Работает с осанкой и гибкостью.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Тарифы</div>
+            <h2>Абонементы без скрытых платежей</h2>
+            <p>Заморозка и пауза по болезни — бесплатно на любом тарифе.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card reveal">
+                <h3>Разовый</h3>
+                <div class="price">600 ₽<span> / тренировка</span></div>
+                <ul>
+                    <li>1 групповая тренировка</li>
+                    <li>Зал до 22:00</li>
+                    <li>Душ и раздевалки</li>
+                    <li>Запись через Telegram</li>
+                </ul>
+                <a href="#book" class="btn btn-ghost">Выбрать</a>
+            </div>
+            <div class="price-card popular reveal">
+                <div class="tag">Хит</div>
+                <h3>Безлимит</h3>
+                <div class="price">2 900 ₽<span> / месяц</span></div>
+                <ul>
+                    <li>Все групповые тренировки</li>
+                    <li>Зал и кардио-зона 24/7</li>
+                    <li>Программа питания в подарок</li>
+                    <li>Заморозка 7 дней</li>
+                    <li>Запись через Telegram</li>
+                </ul>
+                <a href="#book" class="btn btn-primary">Выбрать</a>
+            </div>
+            <div class="price-card reveal">
+                <h3>Персональный</h3>
+                <div class="price">4 500 ₽<span> / 8 занятий</span></div>
+                <ul>
+                    <li>8 персональных тренировок</li>
+                    <li>Индивидуальная программа</li>
+                    <li>Контроль питания</li>
+                    <li>Гибкое расписание</li>
+                </ul>
+                <a href="#book" class="btn btn-ghost">Выбрать</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reviews" id="reviews">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-tag">Отзывы</div>
+            <h2>Что говорят участники</h2>
+        </div>
+        <div class="testi-grid">
+            <div class="testi reveal">
+                <div class="stars">★★★★★</div>
+                <p>За 3 месяца ушла 12 кг. Тренировки по расписанию, тренер всегда на связи, запись через бота — вообще не напрягает.</p>
+                <div class="who"><div class="av">И</div><div><b>Ирина</b><span>участник 8 месяцев</span></div></div>
+            </div>
+            <div class="testi reveal">
+                <div class="stars">★★★★★</div>
+                <p>Зал маленький, но очень живой. Группы небольшие — тренер реально успевает поправить технику. Первый зал, куда хочу возвращаться.</p>
+                <div class="who"><div class="av">Д</div><div><b>Дмитрий</b><span>силовой тренинг</span></div></div>
+            </div>
+            <div class="testi reveal">
+                <div class="stars">★★★★★</div>
+                <p>Записываюсь на йогу прямо из Telegram-бота, вижу свободные места и оплачиваю картой. Очень удобно, ничего не скачивать.</p>
+                <div class="who"><div class="av">А</div><div><b>Алёна</b><span>йога, стретчинг</span></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="book">
+    <div class="container">
+        <div class="cta-box reveal">
+            <h2>Первая тренировка — бесплатно</h2>
+            <p>Оставь заявку — мы запишем тебя на пробную тренировку и ответим в Telegram в течение 15 минут.</p>
+            <form class="booking" id="bookingForm">
+                <div class="booking-row">
+                    <input type="text" id="fName" placeholder="Ваше имя" required>
+                    <select id="fDir" required>
+                        <option value="" disabled selected>Направление</option>
+                        <option>Силовой тренинг</option>
+                        <option>Функциональный</option>
+                        <option>Йога / стретчинг</option>
+                        <option>HIIT</option>
+                        <option>Бокс / ММА</option>
+                        <option>Персональная</option>
+                    </select>
+                </div>
+                <input type="text" id="fTel" placeholder="Телефон или @telegram" required>
+                <button type="submit" class="btn btn-primary">Записаться на пробную</button>
+                <div class="ok" id="formOk">Готово! Заявка формируется в Telegram — нажми «Отправить».</div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-inner">
+        <p>© 2026 PULSE FIT. Все права защищены.</p>
+        <div class="footer-links">
+            <a href="#features">Почему мы</a>
+            <a href="#pricing">Тарифы</a>
+            <a href="#book">Запись</a>
+        </div>
+    </div>
+</footer>
+
+<a class="float-tg" href="https://t.me/userquack" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+    <svg viewBox="0 0 24 24"><path d="M9.04 15.51l-.38 3.65c.54 0 .77-.23 1.06-.52l2.56-2.46 5.3 3.91c.97.54 1.66.26 1.92-.9l3.47-16.35c.31-1.47-.54-2.04-1.52-1.68L1.18 10.39C-.4 10.98-.39 11.88 1.01 12.3l5.2 1.62L17.68 5.6c.61-.4 1.17-.18.71.22L9.04 15.51z"/></svg>
+</a>
+
+<script>
+const burger = document.getElementById("burger");
+const menu = document.getElementById("menu");
+burger.addEventListener("click", () => {
+    menu.classList.toggle("open");
+    burger.classList.toggle("open");
+});
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    menu.classList.remove("open");
+    burger.classList.remove("open");
+}));
+
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 20));
+
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+    });
+}, { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+const counterIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        counterIO.unobserve(e.target);
+        const target = +e.target.dataset.count;
+        const start = performance.now();
+        const dur = 1400;
+        const step = now => {
+            const p = Math.min((now - start) / dur, 1);
+            e.target.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    });
+}, { threshold: .6 });
+document.querySelectorAll("[data-count]").forEach(el => counterIO.observe(el));
+
+const today = new Date().getDay();
+const dayOrder = [7, 1, 2, 3, 4, 5, 6];
+const idx = dayOrder.indexOf(today);
+const days = document.querySelectorAll(".sched-day");
+if (days[idx]) days[idx].classList.add("today");
+
+document.getElementById("bookingForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const name = document.getElementById("fName").value.trim();
+    const dir = document.getElementById("fDir").value;
+    const tel = document.getElementById("fTel").value.trim();
+    const text = "Здравствуйте! Хочу записаться на бесплатную тренировку." +
+        "%0AИмя: " + encodeURIComponent(name) +
+        "%0AНаправление: " + encodeURIComponent(dir) +
+        "%0AКонтакты: " + encodeURIComponent(tel);
+    document.getElementById("formOk").classList.add("show");
+    window.open("https://t.me/userquack?text=" + text, "_blank");
+});
+</script>
+</body>
+</html>
