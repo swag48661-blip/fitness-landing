@@ -8,22 +8,20 @@
 <meta property="og:title" content="PULSE FIT — фитнес-студия">
 <meta property="og:description" content="Первая тренировка бесплатно. Функциональный зал, HIIT, йога, силовой тренинг.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f0d'/><text x='50' y='68' font-size='56' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23ccff33'>PF</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0a0a'/><text x='50' y='72' font-size='52' font-family='Arial' font-weight='900' text-anchor='middle' fill='%23ff4d00'>PF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg: #0b0f0d;
-    --bg-soft: #10150f;
-    --card: #151c16;
-    --line: #232b23;
-    --text: #eef3ea;
-    --muted: #9aa69b;
-    --accent: #ccff33;
-    --accent-dark: #9cc400;
-    --radius: 18px;
-    --shadow: 0 24px 60px rgba(0, 0, 0, .45);
+    --bg: #0a0a0a;
+    --panel: #141414;
+    --panel-2: #1a1a1a;
+    --line: #262626;
+    --text: #f5f5f5;
+    --muted: #9c9c9c;
+    --accent: #ff4d00;
+    --accent-2: #ffe600;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -34,46 +32,37 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
-h1, h2, h3, .nav-logo { font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: .03em; }
+h1, h2, h3, .display { font-family: "Bebas Neue", sans-serif; font-weight: 400; text-transform: uppercase; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-.container { width: min(1140px, 92%); margin-inline: auto; }
-section { padding: 96px 0; position: relative; }
+.container { width: min(1160px, 92%); margin-inline: auto; }
+section { padding: 110px 0; position: relative; }
+.sec-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+}
+.sec-tag::before { content: ""; width: 34px; height: 3px; background: var(--accent); }
+.sec-head h2 { font-size: clamp(42px, 6vw, 72px); line-height: .95; letter-spacing: .01em; }
+.sec-head p { color: var(--muted); margin-top: 16px; max-width: 560px; }
 
 /* Nav */
-.nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    backdrop-filter: blur(14px);
-    background: rgba(11, 15, 13, .75);
-    border-bottom: 1px solid rgba(255, 255, 255, .06);
-    transition: background .3s, box-shadow .3s;
-}
-.nav.scrolled { background: rgba(11, 15, 13, .95); box-shadow: 0 8px 30px rgba(0, 0, 0, .35); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.nav-logo { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.nav-logo .mark {
-    width: 12px; height: 26px; border-radius: 4px;
-    background: linear-gradient(var(--accent), var(--accent-dark));
-    transform: skew(-12deg);
-    display: inline-block;
-    box-shadow: 0 0 16px rgba(204, 255, 51, .55);
-}
-.nav-links { display: flex; gap: 26px; font-size: 14px; font-weight: 500; color: var(--muted); }
-.nav-links a { position: relative; }
-.nav-links a::after {
-    content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px;
-    background: var(--accent); transition: width .25s;
-}
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s, box-shadow .3s; }
+.nav.scrolled { background: rgba(10, 10, 10, .96); box-shadow: 0 8px 30px rgba(0, 0, 0, .5); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { font-family: "Bebas Neue"; font-size: 28px; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; }
+.nav-logo .mark { width: 14px; height: 30px; background: var(--accent); transform: skew(-14deg); display: inline-block; }
+.nav-links { display: flex; gap: 26px; font-size: 14px; font-weight: 600; color: #c9c9c9; }
 .nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::after { width: 100%; }
 .nav-cta {
-    padding: 10px 20px; border-radius: 10px;
-    background: var(--accent); color: #0b0f0d; font-weight: 700; font-size: 14px;
-    transition: transform .15s, box-shadow .15s;
+    padding: 11px 22px; background: var(--accent); color: #fff;
+    font-weight: 800; font-size: 14px; letter-spacing: .02em;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    transition: background .2s;
 }
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(204, 255, 51, .4); }
+.nav-cta:hover { background: var(--accent-2); color: #000; }
 .burger { display: none; background: none; border: 0; cursor: pointer; z-index: 10; }
-.burger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: .3s; }
+.burger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
 .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -81,231 +70,254 @@ section { padding: 96px 0; position: relative; }
 /* Hero */
 .hero {
     min-height: 100vh; display: flex; align-items: center;
-    padding-top: 68px;
+    padding-top: 72px; position: relative;
     background:
-        linear-gradient(180deg, rgba(11,15,13,.93) 0%, rgba(11,15,13,.6) 55%, var(--bg) 100%),
+        linear-gradient(100deg, rgba(10,10,10,.95) 0%, rgba(10,10,10,.65) 55%, rgba(10,10,10,.25) 100%),
         url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
 }
+.hero::after {
+    content: "PULSE"; position: absolute; right: -40px; bottom: -30px; z-index: 0;
+    font-family: "Bebas Neue"; font-size: 30vw; line-height: 1; color: rgba(255,255,255,.04);
+    pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; }
 .hero .badge {
     display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid rgba(204, 255, 51, .4); color: var(--accent);
-    background: rgba(204, 255, 51, .08);
-    padding: 7px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;
-    margin-bottom: 22px;
+    background: var(--accent); color: #fff; font-weight: 800; font-size: 13px;
+    padding: 8px 16px; margin-bottom: 26px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 10px 100%);
 }
-.hero h1 {
-    font-size: clamp(44px, 7vw, 84px); line-height: .98;
-    max-width: 760px; font-weight: 700;
-}
-.hero h1 .accent { color: var(--accent); text-shadow: 0 0 40px rgba(204, 255, 51, .4); }
-.hero p {
-    margin-top: 22px; font-size: 18px; color: var(--muted);
-    max-width: 520px;
-}
-.hero-actions { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+.hero h1 { font-size: clamp(56px, 9vw, 120px); line-height: .9; max-width: 820px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p { margin-top: 24px; font-size: 18px; color: #c9c9c9; max-width: 540px; font-weight: 500; }
+.hero-actions { display: flex; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
 .btn {
-    display: inline-block; padding: 15px 30px; border-radius: 12px;
-    font-weight: 700; font-size: 15px; cursor: pointer; border: 0;
-    transition: transform .15s, box-shadow .15s, background .2s;
+    display: inline-block; padding: 17px 34px; font-weight: 800; font-size: 15px;
+    cursor: pointer; border: 0; transition: transform .15s, box-shadow .15s, background .2s;
 }
-.btn-primary { background: var(--accent); color: #0b0f0d; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(204, 255, 51, .4); }
-.btn-ghost { border: 1px solid rgba(255, 255, 255, .2); color: var(--text); background: rgba(255,255,255,.02); }
+.btn-primary { background: var(--accent); color: #fff; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+.btn-primary:hover { background: var(--accent-2); color: #000; transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.35); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-.hero-stats {
-    display: grid; grid-template-columns: repeat(3, auto); gap: 48px;
-    margin-top: 72px; padding-top: 28px;
-    border-top: 1px solid rgba(255, 255, 255, .1);
-    max-width: 640px;
-}
-.hero-stats .num { font-family: "Oswald"; font-size: 42px; font-weight: 700; color: var(--accent); }
-.hero-stats .lbl { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.hero-stats { display: flex; gap: 56px; margin-top: 64px; flex-wrap: wrap; }
+.hero-stats .item { display: flex; align-items: baseline; gap: 12px; }
+.hero-stats .num { font-family: "Bebas Neue"; font-size: 54px; color: var(--accent); line-height: 1; }
+.hero-stats .lbl { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; max-width: 90px; }
 
-/* Section head */
-.sec-head { margin-bottom: 48px; }
-.sec-tag {
-    font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 10px;
-}
-.sec-head h2 { font-size: clamp(30px, 4.4vw, 48px); line-height: 1.05; }
-.sec-head p { color: var(--muted); margin-top: 14px; max-width: 560px; }
+/* Marquee */
+.marquee { background: var(--accent); color: #000; overflow: hidden; padding: 12px 0; position: relative; z-index: 5; }
+.marquee .track { display: flex; gap: 40px; white-space: nowrap; animation: scroll 22s linear infinite; font-weight: 800; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.marquee .track span { display: flex; align-items: center; gap: 40px; }
+.marquee .track span::after { content: "★"; }
+@keyframes scroll { to { transform: translateX(-50%); } }
 
 /* Features */
-.features { background: var(--bg-soft); }
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.features { background: var(--panel); overflow: hidden; }
+.features .container { position: relative; }
+.features::before {
+    content: "01"; position: absolute; top: 24px; right: 4%;
+    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,77,0,.06); line-height: 1; pointer-events: none;
+}
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .feature {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 28px; transition: transform .2s, border-color .2s, box-shadow .2s;
+    background: var(--panel-2); padding: 30px 26px; position: relative;
+    transition: transform .2s, background .2s; overflow: hidden;
 }
-.feature:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .4); box-shadow: var(--shadow); }
-.feature .ico {
-    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-    background: rgba(204, 255, 51, .1); color: var(--accent); font-size: 22px; margin-bottom: 18px;
-}
-.feature h3 { font-size: 19px; margin-bottom: 8px; }
+.feature::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); transform: scaleY(0); transition: transform .25s; }
+.feature:hover { transform: translateY(-6px); background: #202020; }
+.feature:hover::before { transform: scaleY(1); }
+.feature .idx { font-family: "Bebas Neue"; font-size: 40px; color: var(--accent); line-height: 1; margin-bottom: 18px; }
+.feature h3 { font-size: 26px; margin-bottom: 10px; }
 .feature p { color: var(--muted); font-size: 14px; }
 
 /* Programs */
-.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.program {
-    position: relative; border-radius: var(--radius); overflow: hidden; height: 340px;
-    display: flex; align-items: flex-end; isolation: isolate;
+.programs::before {
+    content: "02"; position: absolute; top: 20px; right: 4%;
+    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
 }
-.program img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .5s; }
-.program:hover img { transform: scale(1.06); }
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.program { position: relative; overflow: hidden; aspect-ratio: 4/5; display: block; isolation: isolate; }
+.program img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.3) brightness(.8); transition: transform .6s, filter .6s; }
+.program:hover img { transform: scale(1.08); filter: grayscale(0) brightness(.95); }
 .program::after {
-    content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(180deg, transparent 30%, rgba(8, 11, 9, .95) 100%);
-    transition: background .3s;
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, transparent 35%, rgba(10,10,10,.95) 100%);
 }
-.program:hover::after { background: linear-gradient(180deg, transparent 0%, rgba(8, 11, 9, .97) 85%); }
-.program-body { padding: 24px; width: 100%; transform: translateY(6px); transition: transform .3s; }
-.program:hover .program-body { transform: translateY(0); }
-.program h3 { font-size: 24px; }
-.program p { color: var(--muted); font-size: 14px; max-height: 0; overflow: hidden; transition: max-height .3s; }
-.program:hover p { max-height: 90px; }
+.program .body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px; }
+.program .body h3 { font-size: 34px; }
+.program .body p { color: #c9c9c9; font-size: 14px; max-height: 0; opacity: 0; overflow: hidden; transition: .3s; }
+.program:hover .body p { max-height: 70px; opacity: 1; margin-top: 6px; }
+.program .arrow {
+    position: absolute; top: 16px; right: 16px; z-index: 2;
+    width: 40px; height: 40px; background: var(--accent); color: #000;
+    display: grid; place-items: center; font-size: 20px; font-weight: 900;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 0; transform: translateY(-8px); transition: .3s;
+}
+.program:hover .arrow { opacity: 1; transform: none; }
 
 /* Gallery */
-.gallery { background: var(--bg-soft); }
-.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.gallery-item { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.gallery-item:hover img { transform: scale(1.08); }
-.gallery-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
-
-/* Trainers */
-.trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.trainer {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
-    transition: transform .2s, box-shadow .2s;
+.gallery { background: var(--panel); overflow: hidden; }
+.gallery::before {
+    content: "03"; position: absolute; top: 20px; right: 4%;
+    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,77,0,.06); line-height: 1; pointer-events: none;
 }
-.trainer:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-.trainer img { width: 100%; height: 300px; object-fit: cover; }
-.trainer-body { padding: 20px; }
-.trainer h3 { font-size: 20px; }
-.trainer .role { color: var(--accent); font-size: 13px; font-weight: 600; margin: 4px 0 10px; }
-.trainer p { color: var(--muted); font-size: 14px; }
-
-/* Pricing */
-.pricing { background: var(--bg-soft); }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
-.price-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; position: relative;
-    transition: transform .2s, border-color .2s;
-}
-.price-card:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .3); }
-.price-card.popular { border-color: var(--accent); box-shadow: var(--shadow); }
-.price-card .tag {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    background: var(--accent); color: #0b0f0d; font-size: 12px; font-weight: 700;
-    padding: 6px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: .06em;
-}
-.price-card h3 { font-size: 20px; }
-.price-card .price { font-family: "Oswald"; font-size: 44px; font-weight: 700; color: var(--accent); line-height: 1; }
-.price-card .price span { font-size: 16px; color: var(--muted); font-family: "Inter"; font-weight: 500; }
-.price-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.price-card li { display: flex; gap: 10px; font-size: 14px; color: var(--muted); }
-.price-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
-.price-card .btn { margin-top: auto; text-align: center; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; }
+.gallery-item { position: relative; overflow: hidden; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.gallery-item:hover img { transform: scale(1.07); }
+.gallery-item::after { content: ""; position: absolute; inset: 0; background: rgba(255,77,0,0); transition: background .3s; }
+.gallery-item:hover::after { background: rgba(255,77,0,.18); }
+.gallery-item.big { grid-column: span 2; grid-row: span 2; }
 
 /* Schedule */
-.schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-.sched-day {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 12px;
-    text-align: center; transition: border-color .2s;
+.schedule::before {
+    content: "04"; position: absolute; top: 20px; right: 4%;
+    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
 }
-.sched-day:hover { border-color: rgba(204, 255, 51, .35); }
-.sched-day.today { border-color: var(--accent); }
-.sched-day .d { font-family: "Oswald"; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
-.sched-day .slot { font-size: 12px; color: var(--muted); padding: 5px 0; border-top: 1px dashed var(--line); }
-.sched-day .slot.hot { color: var(--accent); font-weight: 600; }
+.sched-list { border-top: 1px solid var(--line); }
+.sched-row {
+    display: grid; grid-template-columns: 220px 1fr auto; align-items: center; gap: 24px;
+    padding: 20px 8px; border-bottom: 1px solid var(--line);
+    transition: background .2s, padding-left .2s;
+}
+.sched-row:hover { background: var(--panel); padding-left: 20px; }
+.sched-row .d { font-family: "Bebas Neue"; font-size: 30px; color: var(--accent); }
+.sched-row .times { display: flex; gap: 26px; flex-wrap: wrap; }
+.sched-row .t { font-size: 14px; color: var(--muted); }
+.sched-row .t b { color: var(--text); font-weight: 700; margin-right: 6px; }
+.sched-row .t.hot b { color: var(--accent-2); }
+.sched-row .status { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent-2); }
+
+/* Trainers */
+.trainers::before {
+    content: "05"; position: absolute; top: 20px; right: 4%;
+    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,77,0,.06); line-height: 1; pointer-events: none;
+}
+.trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.trainer { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 3/4; }
+.trainer img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.4) brightness(.75); transition: .5s; }
+.trainer:hover img { filter: grayscale(0) brightness(.95); transform: scale(1.05); }
+.trainer::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,.95) 100%); }
+.trainer .body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px; }
+.trainer .body h3 { font-size: 30px; }
+.trainer .role { color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin: 4px 0 8px; }
+.trainer .body p { color: #c9c9c9; font-size: 14px; }
+
+/* Pricing */
+.pricing { background: var(--panel); overflow: hidden; }
+.pricing::before {
+    content: "06"; position: absolute; top: 20px; right: 4%;
+    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
+}
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+.price {
+    background: var(--panel-2); padding: 40px 34px; display: flex; flex-direction: column; gap: 20px;
+    position: relative; transition: transform .2s;
+}
+.price:hover { transform: translateY(-6px); }
+.price.popular { background: var(--accent); color: #000; }
+.price.popular p, .price.popular li { color: rgba(0,0,0,.75); }
+.price .pname { font-family: "Bebas Neue"; font-size: 30px; }
+.price .val { font-family: "Bebas Neue"; font-size: 64px; line-height: 1; }
+.price .val small { font-family: "Inter"; font-size: 14px; font-weight: 600; color: var(--muted); }
+.price.popular .val small { color: rgba(0,0,0,.6); }
+.price ul { list-style: none; display: flex; flex-direction: column; gap: 12px; flex: 1; border-top: 1px solid var(--line); padding-top: 20px; }
+.price li { display: flex; gap: 10px; font-size: 14px; color: var(--muted); }
+.price li::before { content: "▸"; color: var(--accent); font-weight: 900; }
+.price.popular li::before { color: #000; }
+.price.popular ul { border-color: rgba(0,0,0,.25); }
+.price .btn { margin-top: auto; text-align: center; }
+.price.popular .btn { background: #000; color: #fff; }
 
 /* Testimonials */
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.testi {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px;
-    transition: transform .2s, border-color .2s;
+.testi-wrap { position: relative; }
+.testi-slider { overflow: hidden; }
+.testi-slide { display: none; padding: 8px 4px; }
+.testi-slide.active { display: block; animation: fade .5s ease; }
+@keyframes fade { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+.testi-slide .quote { font-family: "Bebas Neue"; font-size: 130px; line-height: .5; color: var(--accent); }
+.testi-slide .stars { color: var(--accent-2); letter-spacing: 3px; margin: 18px 0; }
+.testi-slide p { font-size: clamp(20px, 2.6vw, 30px); font-weight: 500; max-width: 760px; line-height: 1.5; }
+.testi-slide .who { margin-top: 26px; font-size: 15px; }
+.testi-slide .who b { font-size: 17px; }
+.testi-slide .who span { color: var(--muted); }
+.testi-nav { display: flex; align-items: center; gap: 18px; margin-top: 34px; }
+.testi-nav button {
+    width: 52px; height: 52px; background: var(--panel); color: #fff; border: 1px solid var(--line);
+    font-size: 22px; cursor: pointer; transition: background .2s, color .2s;
 }
-.testi:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .3); }
-.testi .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 14px; }
-.testi .result {
-    display: inline-block; margin-bottom: 12px; padding: 5px 12px; border-radius: 100px;
-    background: rgba(204, 255, 51, .1); border: 1px solid rgba(204, 255, 51, .35);
-    color: var(--accent); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
-}
-.testi p { color: var(--muted); font-size: 14px; }
-.testi .who { margin-top: 18px; display: flex; align-items: center; gap: 12px; }
-.testi .who .av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: grid; place-items: center; font-weight: 700; color: #0b0f0d; }
-.testi .who b { font-size: 14px; display: block; }
-.testi .who span { font-size: 12px; color: var(--muted); }
+.testi-nav button:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+.testi-dots { display: flex; gap: 8px; }
+.testi-dots .dot { width: 10px; height: 10px; background: var(--line); cursor: pointer; transition: background .2s; }
+.testi-dots .dot.active { background: var(--accent); }
 
-/* CTA / booking */
-.cta { padding: 0; }
+/* CTA */
+.cta { padding-bottom: 120px; }
 .cta-box {
-    border-radius: 24px; overflow: hidden; position: relative; isolation: isolate;
-    padding: 72px 48px;
+    position: relative; padding: 80px 56px; overflow: hidden; isolation: isolate;
     background:
-        linear-gradient(90deg, rgba(11,15,13,.96) 0%, rgba(11,15,13,.82) 60%, rgba(11,15,13,.55) 100%),
+        linear-gradient(100deg, rgba(255,77,0,.06) 0%, rgba(10,10,10,.55) 60%, rgba(10,10,10,.9) 100%),
         url("https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
 }
-.cta-box h2 { font-size: clamp(28px, 4vw, 44px); max-width: 460px; }
-.cta-box p { color: var(--muted); margin: 14px 0 30px; max-width: 440px; }
-.booking { display: flex; flex-direction: column; gap: 12px; max-width: 460px; }
+.cta-box::before { content: "JUST DO IT"; position: absolute; top: -20px; right: -30px; font-family: "Bebas Neue"; font-size: 90px; color: rgba(255,255,255,.05); pointer-events: none; transform: rotate(-4deg); }
+.cta-box h2 { font-size: clamp(44px, 6vw, 72px); max-width: 520px; line-height: .95; }
+.cta-box h2 em { font-style: normal; color: var(--accent); }
+.cta-box > p { color: var(--muted); margin: 18px 0 34px; max-width: 460px; }
+.booking { display: flex; flex-direction: column; gap: 12px; max-width: 480px; }
 .booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .booking input, .booking select {
-    width: 100%; padding: 14px 16px; border-radius: 12px;
-    background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14);
+    width: 100%; padding: 15px 16px;
+    background: rgba(0, 0, 0, .5); border: 1px solid rgba(255, 255, 255, .18);
     color: var(--text); font-size: 15px; font-family: inherit; outline: none;
     transition: border-color .2s;
 }
 .booking input:focus, .booking select:focus { border-color: var(--accent); }
-.booking select option { background: var(--card); }
+.booking select option { background: #111; }
 .booking .btn { text-align: center; }
 .booking .ok {
-    display: none; padding: 16px; border-radius: 12px;
-    background: rgba(204, 255, 51, .1); border: 1px solid rgba(204, 255, 51, .4);
-    color: var(--accent); font-weight: 600; font-size: 14px;
+    display: none; padding: 16px; border: 1px solid rgba(255, 230, 0, .4);
+    background: rgba(255, 230, 0, .08); color: var(--accent-2); font-weight: 700; font-size: 14px;
 }
 .booking .ok.show { display: block; }
 
-/* Floating Telegram */
+/* Footer */
+footer { border-top: 1px solid var(--line); padding: 44px 0; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+footer p { color: var(--muted); font-size: 13px; }
+.footer-links { display: flex; gap: 24px; font-size: 14px; color: var(--muted); }
+.footer-links a:hover { color: var(--accent); }
+
+/* Float telegram */
 .float-tg {
     position: fixed; right: 22px; bottom: 22px; z-index: 90;
     width: 60px; height: 60px; border-radius: 50%;
-    background: #2aabee; display: grid; place-items: center;
-    box-shadow: 0 10px 30px rgba(42, 171, 238, .5);
-    transition: transform .2s;
+    background: var(--accent); display: grid; place-items: center;
+    box-shadow: 0 10px 30px rgba(255, 77, 0, .5); transition: transform .2s;
 }
-.float-tg:hover { transform: scale(1.08); }
+.float-tg:hover { transform: scale(1.1); }
 .float-tg svg { width: 30px; height: 30px; fill: #fff; }
 
-/* Footer */
-footer { border-top: 1px solid rgba(255, 255, 255, .06); padding: 40px 0; }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-footer p { color: var(--muted); font-size: 13px; }
-.footer-links { display: flex; gap: 20px; font-size: 14px; color: var(--muted); }
-.footer-links a:hover { color: var(--accent); }
-
-/* Reveal animation */
+/* Reveal */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.on { opacity: 1; transform: none; }
 
 @media (max-width: 900px) {
-    .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; background: rgba(11,15,13,.98); padding: 20px 8%; gap: 16px; border-bottom: 1px solid var(--line); }
+    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; background: rgba(10,10,10,.98); padding: 22px 8%; gap: 18px; border-bottom: 1px solid var(--line); }
     .nav-links.open { display: flex; }
     .burger { display: block; }
-    .hero-stats { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-    .programs-grid, .trainers-grid, .pricing-grid, .testi-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .gallery-item:first-child { grid-column: span 2; }
-    .schedule-grid { grid-template-columns: repeat(2, 1fr); }
-    .booking-row { grid-template-columns: 1fr; }
-    section { padding: 68px 0; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .programs-grid, .trainers-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.big { grid-column: span 2; }
+    .sched-row { grid-template-columns: 1fr; gap: 8px; }
+    .hero-stats { gap: 28px; }
+    section { padding: 76px 0; }
 }
 @media (max-width: 560px) {
-    .hero-stats { grid-template-columns: 1fr; gap: 16px; }
-    .cta-box { padding: 48px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .cta-box { padding: 56px 24px; }
+    .booking-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -331,19 +343,24 @@ footer p { color: var(--muted); font-size: 13px; }
 <header class="hero" id="hero">
     <div class="container">
         <div class="badge">⚡ Первая тренировка — бесплатно</div>
-        <h1>Тренируйся, где каждый <span class="accent">поход в зал</span> даёт результат</h1>
+        <h1>Тренируйся, где каждый <em>поход в зал</em> даёт результат</h1>
         <p>Функциональный зал, опытные тренеры и персональные программы. Приходи на бесплатную тренировку — почувствуй разницу.</p>
         <div class="hero-actions">
             <a href="#book" class="btn btn-primary">Записаться бесплатно</a>
             <a href="#pricing" class="btn btn-ghost">Смотреть тарифы</a>
         </div>
         <div class="hero-stats">
-            <div><div class="num"><span data-count="15">0</span>+</div><div class="lbl">тренеров</div></div>
-            <div><div class="num"><span data-count="12">0</span></div><div class="lbl">направлений</div></div>
-            <div><div class="num"><span data-count="800">0</span>+</div><div class="lbl">участников</div></div>
+            <div class="item"><div class="num"><span data-count="15">0</span>+</div><div class="lbl">тренеров</div></div>
+            <div class="item"><div class="num"><span data-count="12">0</span></div><div class="lbl">направлений</div></div>
+            <div class="item"><div class="num"><span data-count="800">0</span>+</div><div class="lbl">участников</div></div>
         </div>
     </div>
 </header>
+
+<div class="marquee"><div class="track">
+    <span>Первая тренировка бесплатно&nbsp;&nbsp;Функциональный зал&nbsp;&nbsp;HIIT&nbsp;&nbsp;Йога&nbsp;&nbsp;Силовой тренинг&nbsp;&nbsp;Бокс&nbsp;&nbsp;Запись через Telegram</span>
+    <span>Первая тренировка бесплатно&nbsp;&nbsp;Функциональный зал&nbsp;&nbsp;HIIT&nbsp;&nbsp;Йога&nbsp;&nbsp;Силовой тренинг&nbsp;&nbsp;Бокс&nbsp;&nbsp;Запись через Telegram</span>
+</div></div>
 
 <section class="features" id="features">
     <div class="container">
@@ -353,10 +370,10 @@ footer p { color: var(--muted); font-size: 13px; }
             <p>Никаких перегруженных фитнес-клубов — только то, что работает на твой результат.</p>
         </div>
         <div class="features-grid">
-            <div class="feature reveal"><div class="ico">🏋️</div><h3>Функциональный зал</h3><p>Зона кроссфита, свободные веса, кардио-зона и канаты — всё для интенсивных тренировок.</p></div>
-            <div class="feature reveal"><div class="ico">📋</div><h3>Персональные программы</h3><p>План тренировок под твою цель: похудение, сила, выносливость или форма.</p></div>
-            <div class="feature reveal"><div class="ico">🧑‍🏫</div><h3>Тренер на каждой тренировке</h3><p>Групповые тренировки до 10 человек — тебя видят и поправляют технику.</p></div>
-            <div class="feature reveal"><div class="ico">📲</div><h3>Запись через Telegram</h3><p>Бронь тренировки и абонементы — прямо в Telegram-боте. Без звонков и очередей.</p></div>
+            <div class="feature reveal"><div class="idx">01</div><h3>Функциональный зал</h3><p>Зона кроссфита, свободные веса, кардио-зона и канаты — всё для интенсивных тренировок.</p></div>
+            <div class="feature reveal"><div class="idx">02</div><h3>Персональные программы</h3><p>План тренировок под твою цель: похудение, сила, выносливость или форма.</p></div>
+            <div class="feature reveal"><div class="idx">03</div><h3>Тренер на каждой тренировке</h3><p>Групповые тренировки до 10 человек — тебя видят и поправляют технику.</p></div>
+            <div class="feature reveal"><div class="idx">04</div><h3>Запись через Telegram</h3><p>Бронь тренировки и абонементы — прямо в Telegram-боте. Без звонков и очередей.</p></div>
         </div>
     </div>
 </section>
@@ -371,27 +388,33 @@ footer p { color: var(--muted); font-size: 13px; }
         <div class="programs-grid">
             <a href="#book" class="program reveal">
                 <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Силовые тренировки" loading="lazy">
-                <div class="program-body"><h3>Силовой тренинг</h3><p>Свободные веса, база и прогрессия. Для силы и рельефа.</p></div>
+                <span class="arrow">→</span>
+                <div class="body"><h3>Силовой тренинг</h3><p>Свободные веса, база и прогрессия. Для силы и рельефа.</p></div>
             </a>
             <a href="#book" class="program reveal">
                 <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80" alt="Функциональный тренинг" loading="lazy">
-                <div class="program-body"><h3>Функциональный</h3><p>Кроссфит-элементы, канаты, работа с собственным весом.</p></div>
+                <span class="arrow">→</span>
+                <div class="body"><h3>Функциональный</h3><p>Кроссфит-элементы, канаты, работа с собственным весом.</p></div>
             </a>
             <a href="#book" class="program reveal">
                 <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80" alt="Йога и растяжка" loading="lazy">
-                <div class="program-body"><h3>Йога и стретчинг</h3><p>Гибкость, осанка и восстановление после нагрузок.</p></div>
+                <span class="arrow">→</span>
+                <div class="body"><h3>Йога и стретчинг</h3><p>Гибкость, осанка и восстановление после нагрузок.</p></div>
             </a>
             <a href="#book" class="program reveal">
                 <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="HIIT" loading="lazy">
-                <div class="program-body"><h3>HIIT</h3><p>Интервальные тренировки для жиросжигания за 40 минут.</p></div>
+                <span class="arrow">→</span>
+                <div class="body"><h3>HIIT</h3><p>Интервальные тренировки для жиросжигания за 40 минут.</p></div>
             </a>
             <a href="#book" class="program reveal">
                 <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=900&q=80" alt="Бокс" loading="lazy">
-                <div class="program-body"><h3>Бокс и ММА</h3><p>Ударная техника, работа в парах, координация и реакция.</p></div>
+                <span class="arrow">→</span>
+                <div class="body"><h3>Бокс и ММА</h3><p>Ударная техника, работа в парах, координация и реакция.</p></div>
             </a>
             <a href="#book" class="program reveal">
                 <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80" alt="Персональные тренировки" loading="lazy">
-                <div class="program-body"><h3>Персонально</h3><p>Тренировка 1 на 1 с тренером под твою конкретную цель.</p></div>
+                <span class="arrow">→</span>
+                <div class="body"><h3>Персонально</h3><p>Тренировка 1 на 1 с тренером под твою конкретную цель.</p></div>
             </a>
         </div>
     </div>
@@ -405,7 +428,7 @@ footer p { color: var(--muted); font-size: 13px; }
             <p>Свежий ремонт, новая техника и зонирование под любой формат тренировок.</p>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Зал для тренировок" loading="lazy"></div>
+            <div class="gallery-item big reveal"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Зал для тренировок" loading="lazy"></div>
             <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=900&q=80" alt="Стойка со свободными весами" loading="lazy"></div>
             <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=900&q=80" alt="Тренажёрная зона" loading="lazy"></div>
             <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=900&q=80" alt="Зона растяжки" loading="lazy"></div>
@@ -420,14 +443,14 @@ footer p { color: var(--muted); font-size: 13px; }
             <div class="sec-tag">Расписание</div>
             <h2>Групповые тренировки на неделю</h2>
         </div>
-        <div class="schedule-grid">
-            <div class="sched-day reveal"><div class="d">Пн</div><div class="slot hot">08:00 HIIT</div><div class="slot">19:00 Сила</div><div class="slot">20:30 Бокс</div></div>
-            <div class="sched-day reveal"><div class="d">Вт</div><div class="slot hot">09:00 Йога</div><div class="slot">19:00 Функц.</div><div class="slot">20:30 ММА</div></div>
-            <div class="sched-day reveal"><div class="d">Ср</div><div class="slot hot">08:00 HIIT</div><div class="slot">19:00 Сила</div><div class="slot">20:30 Перс.</div></div>
-            <div class="sched-day reveal"><div class="d">Чт</div><div class="slot hot">09:00 Йога</div><div class="slot">19:00 Функц.</div><div class="slot">20:30 Бокс</div></div>
-            <div class="sched-day reveal"><div class="d">Пт</div><div class="slot hot">08:00 HIIT</div><div class="slot">19:00 Сила</div><div class="slot">20:30 Перс.</div></div>
-            <div class="sched-day reveal"><div class="d">Сб</div><div class="slot">10:00 Функц.</div><div class="slot hot">12:00 Йога</div><div class="slot">14:00 Бокс</div></div>
-            <div class="sched-day reveal"><div class="d">Вс</div><div class="slot hot">11:00 Йога</div><div class="slot">13:00 Стретч.</div><div class="slot">—</div></div>
+        <div class="sched-list">
+            <div class="sched-row reveal"><div class="d">Понедельник</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Свободно</div></div>
+            <div class="sched-row reveal"><div class="d">Вторник</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>ММА</span></div><div class="status">Свободно</div></div>
+            <div class="sched-row reveal"><div class="d">Среда</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
+            <div class="sched-row reveal"><div class="d">Четверг</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Почти полн</div></div>
+            <div class="sched-row reveal"><div class="d">Пятница</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
+            <div class="sched-row reveal"><div class="d">Суббота</div><div class="times"><span class="t"><b>10:00</b>Функц.</span><span class="t hot"><b>12:00</b>Йога</span><span class="t"><b>14:00</b>Бокс</span></div><div class="status">Свободно</div></div>
+            <div class="sched-row reveal"><div class="d">Воскресенье</div><div class="times"><span class="t hot"><b>11:00</b>Йога</span><span class="t"><b>13:00</b>Стретч.</span></div><div class="status">Свободно</div></div>
         </div>
     </div>
 </section>
@@ -442,15 +465,15 @@ footer p { color: var(--muted); font-size: 13px; }
         <div class="trainers-grid">
             <div class="trainer reveal">
                 <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Анна Соколова" loading="lazy">
-                <div class="trainer-body"><h3>Анна Соколова</h3><div class="role">Функциональный тренинг, HIIT</div><p>Мастер спорта по кроссфиту. Помогает худеть без голода и выгорания.</p></div>
+                <div class="body"><h3>Анна Соколова</h3><div class="role">Функциональный тренинг · HIIT</div><p>Мастер спорта по кроссфиту. Помогает худеть без голода и выгорания.</p></div>
             </div>
             <div class="trainer reveal">
                 <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80" alt="Максим Орлов" loading="lazy">
-                <div class="trainer-body"><h3>Максим Орлов</h3><div class="role">Силовой тренинг</div><p>КМС по пауэрлифтингу. Строит программы для силы и рельефа.</p></div>
+                <div class="body"><h3>Максим Орлов</h3><div class="role">Силовой тренинг</div><p>КМС по пауэрлифтингу. Строит программы для силы и рельефа.</p></div>
             </div>
             <div class="trainer reveal">
                 <img src="https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=800&q=80" alt="Кира Лебедева" loading="lazy">
-                <div class="trainer-body"><h3>Кира Лебедева</h3><div class="role">Йога, растяжка</div><p>Сертифицированный инструктор. Работает с осанкой и гибкостью.</p></div>
+                <div class="body"><h3>Кира Лебедева</h3><div class="role">Йога · Растяжка</div><p>Сертифицированный инструктор. Работает с осанкой и гибкостью.</p></div>
             </div>
         </div>
     </div>
@@ -464,9 +487,9 @@ footer p { color: var(--muted); font-size: 13px; }
             <p>Заморозка и пауза по болезни — бесплатно на любом тарифе.</p>
         </div>
         <div class="pricing-grid">
-            <div class="price-card reveal">
-                <h3>Разовый</h3>
-                <div class="price">600 ₽<span> / тренировка</span></div>
+            <div class="price reveal">
+                <div class="pname">Разовый</div>
+                <div class="val">600₽<small> / тренировка</small></div>
                 <ul>
                     <li>1 групповая тренировка</li>
                     <li>Зал до 22:00</li>
@@ -475,10 +498,9 @@ footer p { color: var(--muted); font-size: 13px; }
                 </ul>
                 <a href="#book" class="btn btn-ghost">Выбрать</a>
             </div>
-            <div class="price-card popular reveal">
-                <div class="tag">Хит</div>
-                <h3>Безлимит</h3>
-                <div class="price">2 900 ₽<span> / месяц</span></div>
+            <div class="price popular reveal">
+                <div class="pname">Безлимит</div>
+                <div class="val">2 900₽<small> / месяц</small></div>
                 <ul>
                     <li>Все групповые тренировки</li>
                     <li>Зал и кардио-зона 24/7</li>
@@ -486,11 +508,11 @@ footer p { color: var(--muted); font-size: 13px; }
                     <li>Заморозка 7 дней</li>
                     <li>Запись через Telegram</li>
                 </ul>
-                <a href="#book" class="btn btn-primary">Выбрать</a>
+                <a href="#book" class="btn">Хит</a>
             </div>
-            <div class="price-card reveal">
-                <h3>Персональный</h3>
-                <div class="price">4 500 ₽<span> / 8 занятий</span></div>
+            <div class="price reveal">
+                <div class="pname">Персональный</div>
+                <div class="val">4 500₽<small> / 8 занятий</small></div>
                 <ul>
                     <li>8 персональных тренировок</li>
                     <li>Индивидуальная программа</li>
@@ -509,24 +531,31 @@ footer p { color: var(--muted); font-size: 13px; }
             <div class="sec-tag">Отзывы</div>
             <h2>Что говорят участники</h2>
         </div>
-        <div class="testi-grid">
-            <div class="testi reveal">
-                <div class="stars">★★★★★</div>
-                <div class="result">−12 кг за 3 месяца</div>
-                <p>Сначала не верила, что похудею без изнурительных диет. Составили программу по калориям, три тренировки в неделю — за 3 месяца минус 12 кг. Запись через бота, тренер всегда на связи. Это реально работает.</p>
-                <div class="who"><div class="av">И</div><div><b>Ирина</b><span>HR-менеджер, Москва</span></div></div>
+        <div class="testi-wrap reveal">
+            <div class="testi-slider" id="slider">
+                <div class="testi-slide active">
+                    <div class="quote">“</div>
+                    <div class="stars">★★★★★</div>
+                    <p>Сначала не верила, что похудею без изнурительных диет. Составили программу по калориям, три тренировки в неделю — за 3 месяца минус 12 кг. Запись через бота, тренер всегда на связи. Это реально работает.</p>
+                    <div class="who"><b>Ирина</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>HR-менеджер, Москва</span></div>
+                </div>
+                <div class="testi-slide">
+                    <div class="quote">“</div>
+                    <div class="stars">★★★★★</div>
+                    <p>Прошёл десяток залов — этот единственный, куда хочется возвращаться. Группы до 10 человек, тренер реально следит за техникой, а не просто считает повторения. Спина наконец перестала болеть за компом.</p>
+                    <div class="who"><b>Дмитрий</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>разработчик, СПб</span></div>
+                </div>
+                <div class="testi-slide">
+                    <div class="quote">“</div>
+                    <div class="stars">★★★★★</div>
+                    <p>Йога и стретчинг после работы — лучшая разгрузка за день. Ходила ради растяжки, а заодно ушла сутулость и перестала болеть спина. Плюс — запись из Telegram: вижу свободные места и оплачиваю картой за 10 секунд.</p>
+                    <div class="who"><b>Алёна</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>дизайнер, Казань</span></div>
+                </div>
             </div>
-            <div class="testi reveal">
-                <div class="stars">★★★★★</div>
-                <div class="result">+15 кг на жиме за 5 месяцев</div>
-                <p>Прошёл десяток залов — этот единственный, куда хочется возвращаться. Группы до 10 человек, тренер реально следит за техникой, а не просто считает повторения. Спина наконец перестала болеть за компом.</p>
-                <div class="who"><div class="av">Д</div><div><b>Дмитрий</b><span>разработчик, СПб</span></div></div>
-            </div>
-            <div class="testi reveal">
-                <div class="stars">★★★★★</div>
-                <div class="result">осанка за 2 месяца</div>
-                <p>Йога и стретчинг после работы — лучшая разгрузка за день. Ходила ради растяжки, а заодно ушла сутулость и перестала болеть спина. Отдельный плюс — запись из Telegram: вижу свободные места и оплачиваю картой за 10 секунд.</p>
-                <div class="who"><div class="av">А</div><div><b>Алёна</b><span>дизайнер, Казань</span></div></div>
+            <div class="testi-nav">
+                <button id="prev" aria-label="Назад">←</button>
+                <div class="testi-dots" id="dots"></div>
+                <button id="next" aria-label="Вперёд">→</button>
             </div>
         </div>
     </div>
@@ -535,7 +564,7 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="cta" id="book">
     <div class="container">
         <div class="cta-box reveal">
-            <h2>Первая тренировка — бесплатно</h2>
+            <h2>Первая тренировка — <em>бесплатно</em></h2>
             <p>Оставь заявку — мы запишем тебя на пробную тренировку и ответим в Telegram в течение 15 минут.</p>
             <form class="booking" id="bookingForm">
                 <div class="booking-row">
@@ -612,11 +641,26 @@ const counterIO = new IntersectionObserver(entries => {
 }, { threshold: .6 });
 document.querySelectorAll("[data-count]").forEach(el => counterIO.observe(el));
 
-const today = new Date().getDay();
-const dayOrder = [7, 1, 2, 3, 4, 5, 6];
-const idx = dayOrder.indexOf(today);
-const days = document.querySelectorAll(".sched-day");
-if (days[idx]) days[idx].classList.add("today");
+const slides = document.querySelectorAll(".testi-slide");
+const dotsWrap = document.getElementById("dots");
+let cur = 0;
+slides.forEach((_, i) => {
+    const d = document.createElement("div");
+    d.classList.add("dot");
+    if (i === 0) d.classList.add("active");
+    d.addEventListener("click", () => go(i));
+    dotsWrap.appendChild(d);
+});
+const dots = dotsWrap.children;
+function go(i) {
+    slides[cur].classList.remove("active");
+    dots[cur].classList.remove("active");
+    cur = (i + slides.length) % slides.length;
+    slides[cur].classList.add("active");
+    dots[cur].classList.add("active");
+}
+document.getElementById("prev").addEventListener("click", () => go(cur - 1));
+document.getElementById("next").addEventListener("click", () => go(cur + 1));
 
 document.getElementById("bookingForm").addEventListener("submit", e => {
     e.preventDefault();
