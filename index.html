@@ -191,7 +191,7 @@ section { padding: 120px 0; position: relative; }
 /* Schedule */
 .schedule { background: var(--surface); }
 .sched-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 22px; background: var(--surface-2); }
-.sched-table { min-width: 940px; display: grid; grid-template-columns: 190px repeat(9, 1fr); }
+.sched-table { min-width: 920px; display: grid; grid-template-columns: 150px repeat(9, 1fr); }
 .sched-head { display: contents; }
 .sched-head .s-cell {
     font-family: "Playfair Display"; font-size: 15px; color: var(--gold);
@@ -208,10 +208,10 @@ section { padding: 120px 0; position: relative; }
     transition: background .2s, color .2s;
 }
 .s-cell.day {
-    font-family: "Playfair Display"; font-size: 15px; text-align: left; padding-left: 18px; font-weight: 600;
+    font-family: "Playfair Display"; font-size: 14.5px; text-align: left; padding-left: 18px; font-weight: 600;
     border-right: 1px solid var(--line); position: sticky; left: 0; z-index: 1; background: var(--surface-2);
-    white-space: nowrap;
-    display: flex; align-items: center; gap: 10px;
+    white-space: nowrap; overflow: hidden;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px;
 }
 .s-cell.cls { font-weight: 700; cursor: pointer; }
 .s-cell.cls:hover { background: rgba(244,196,0,.14); color: var(--gold-hi); }
@@ -234,9 +234,9 @@ section { padding: 120px 0; position: relative; }
 }
 .today-badge {
     display: inline-block;
-    font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    font-size: 9.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
     color: #0b0b09; background: var(--gold);
-    padding: 3px 10px; border-radius: 100px; margin-left: 10px;
+    padding: 2px 9px; border-radius: 100px; margin: 0;
     vertical-align: middle;
 }
 
