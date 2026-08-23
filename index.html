@@ -201,8 +201,7 @@ section { padding: 120px 0; position: relative; }
 .sched-head .s-cell:first-child { border-right: 1px solid var(--line); position: sticky; left: 0; z-index: 3; }
 .sched-row { display: contents; }
 .sched-row.today .s-cell.day { color: var(--text); }
-.sched-row.today .s-cell { background: rgba(244,196,0,.04); }
-.sched-row.weekend .s-cell { opacity: .55; }
+.sched-row.today .s-cell { background: rgba(244,196,0,.05); }
 .s-cell {
     padding: 14px 8px; text-align: center; font-size: 13px; color: var(--text);
     border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -212,6 +211,7 @@ section { padding: 120px 0; position: relative; }
     font-family: "Playfair Display"; font-size: 15px; text-align: left; padding-left: 18px; font-weight: 600;
     border-right: 1px solid var(--line); position: sticky; left: 0; z-index: 1; background: var(--surface-2);
     white-space: nowrap;
+    display: flex; align-items: center; gap: 10px;
 }
 .s-cell.cls { font-weight: 700; cursor: pointer; }
 .s-cell.cls:hover { background: rgba(244,196,0,.14); color: var(--gold-hi); }
