@@ -137,11 +137,7 @@ section { padding: 120px 0; position: relative; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 /* Marquee */
-.marquee { background: var(--ink); color: var(--cream); overflow: hidden; padding: 16px 0; }
-.marquee .track { display: flex; white-space: nowrap; animation: mar 28s linear infinite; font-family: "Playfair Display"; font-style: italic; font-size: 20px; }
-.marquee .track span { display: flex; align-items: center; gap: 46px; padding-right: 46px; }
-.marquee .track span::after { content: "✦"; color: var(--gold); }
-@keyframes mar { to { transform: translateX(-50%); } }
+.marquee { display: none; }
 
 /* Features */
 .features { background: var(--cream); }
@@ -407,9 +403,9 @@ footer p { color: var(--muted); font-size: 13.5px; }
         <div>
             <span class="badge">✦ Первая тренировка бесплатно</span>
             <h1>
-                <span class="line"><span>Форма,</span></span>
-                <span class="line"><span>за которую</span></span>
-                <span class="line"><span>тебя уважают</span></span>
+                <span class="line"><span>Тренируйся, где каждый</span></span>
+                <span class="line"><span>поход в зал</span></span>
+                <span class="line"><span>даёт <em>результат</em></span></span>
             </h1>
             <p>Функциональный зал, тренеры с опытом и персональные программы. Приходи на бесплатную тренировку — и почувствуй разницу.</p>
             <div class="hero-actions">
@@ -432,11 +428,6 @@ footer p { color: var(--muted); font-size: 13.5px; }
         </div>
     </div>
 </header>
-
-<div class="marquee"><div class="track">
-    <span>Первая тренировка бесплатно</span><span>Функциональный зал</span><span>HIIT</span><span>Йога</span><span>Силовой тренинг</span><span>Бокс</span><span>Запись через Telegram</span>
-    <span>Первая тренировка бесплатно</span><span>Функциональный зал</span><span>HIIT</span><span>Йога</span><span>Силовой тренинг</span><span>Бокс</span><span>Запись через Telegram</span>
-</div></div>
 
 <section class="features" id="features">
     <div class="container">
@@ -644,19 +635,19 @@ footer p { color: var(--muted); font-size: 13.5px; }
                 <div class="testi-slide active">
                     <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
-                    <p>Составили программу по калориям, три тренировки в неделю — за 3 месяца минус 12 кг. Запись через бота, тренер всегда на связи.</p>
+                    <p>Пришла «посмотреть» — и осталась на год. За 3 месяца минус 12 кг: тренер собрал программу под мой график, а запись через бота сделала всё это просто привычкой.</p>
                     <div class="who"><b>Ирина</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>HR-менеджер, Москва</span></div>
                 </div>
                 <div class="testi-slide">
                     <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
-                    <p>Прошёл десяток залов — этот единственный, куда хочется возвращаться. Тренер следит за техникой, а не считает повторения.</p>
+                    <p>Обходил залы годами — ни один не держал дольше пары месяцев. Здесь группы до 10 человек, и тренер правда следит за техникой. Через полгода жим вырос на 15 кг.</p>
                     <div class="who"><b>Дмитрий</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>разработчик, СПб</span></div>
                 </div>
                 <div class="testi-slide">
                     <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
-                    <p>Йога после работы — лучшая разгрузка за день. Ушла сутулость и перестала болеть спина. Запись из Telegram за 10 секунд.</p>
+                    <p>Ходила за растяжкой, а ушла сутулость и перестала болеть спина. Атмосфера спокойная, без «качалочного» пафоса. Запись из Telegram — 10 секунд, и ты в расписании.</p>
                     <div class="who"><b>Алёна</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>дизайнер, Казань</span></div>
                 </div>
             </div>
