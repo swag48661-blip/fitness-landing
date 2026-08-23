@@ -190,42 +190,53 @@ section { padding: 120px 0; position: relative; }
 
 /* Schedule */
 .schedule { background: var(--surface); }
-.schedule .list { border-top: 1px solid var(--line); }
-.s-row {
-    display: grid; grid-template-columns: 240px 1fr auto; align-items: center; gap: 24px;
-    padding: 24px 10px; border-bottom: 1px solid var(--line); transition: padding-left .3s, background .3s, box-shadow .3s;
+.sched-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 22px; background: var(--surface-2); }
+.sched-table { min-width: 790px; display: grid; grid-template-columns: 110px repeat(9, 1fr); }
+.sched-head { display: contents; }
+.sched-head .s-cell {
+    font-family: "Playfair Display"; font-size: 15px; color: var(--gold);
+    padding: 18px 8px; text-align: center; border-right: 1px solid var(--line);
+    background: var(--surface-2); position: sticky; top: 0; z-index: 2;
 }
-.s-row:hover { padding-left: 24px; background: var(--surface-2); }
-.s-row.today { background: rgba(244,196,0,.05); box-shadow: inset 3px 0 0 var(--gold); }
-.s-row.today .d { color: var(--gold-hi); }
-.s-row .d { font-family: "Playfair Display"; font-size: 26px; }
-.s-row .times { display: flex; gap: 30px; flex-wrap: wrap; }
-.s-row .t { font-size: 14px; color: var(--muted); }
-.s-row .t b { color: var(--text); font-weight: 700; margin-right: 7px; }
-.s-row .t.hot b { color: var(--gold-hi); }
-.s-row .t.hot b::after {
-    content: ""; position: absolute; margin-left: 8px; top: 50%; transform: translateY(-50%);
-    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
-    animation: dot-pulse 1.6s ease-in-out infinite;
+.sched-head .s-cell:first-child { border-right: 1px solid var(--line); position: sticky; left: 0; z-index: 3; }
+.sched-row { display: contents; }
+.sched-row.today .s-cell.day { color: var(--gold-hi); }
+.sched-row.today .s-cell { background: rgba(244,196,0,.04); }
+.sched-row.weekend .s-cell { opacity: .55; }
+.s-cell {
+    padding: 14px 8px; text-align: center; font-size: 13px; color: var(--text);
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    transition: background .2s, color .2s;
 }
-@keyframes dot-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(244,196,0,.45); }
-    50% { box-shadow: 0 0 0 7px rgba(244,196,0,0); }
+.s-cell.day {
+    font-family: "Playfair Display"; font-size: 16px; text-align: left; padding-left: 20px; font-weight: 600;
+    border-right: 1px solid var(--line); position: sticky; left: 0; z-index: 1; background: var(--surface-2);
 }
-.s-row .t.hot b { position: relative; }
-.s-row .status {
-    padding: 7px 14px; border-radius: 100px; font-size: 11px; font-weight: 800;
-    letter-spacing: .12em; text-transform: uppercase;
-    background: rgba(244,196,0,.1); border: 1px solid rgba(244,196,0,.25); color: var(--gold);
+.s-cell.cls { font-weight: 700; cursor: pointer; }
+.s-cell.cls:hover { background: rgba(244,196,0,.14); color: var(--gold-hi); }
+.s-cell .int { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.s-cell .int.hi { background: #ff6b4a; }
+.s-cell .int.md { background: var(--gold); }
+.s-cell .int.lo { background: #6ad991; }
+.sched-legend {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px; padding: 16px 20px;
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 100px;
 }
-.s-row .status.full { background: rgba(255,217,61,.12); border-color: rgba(255,217,61,.35); color: var(--gold-hi); }
-.schedule .s-row:nth-child(1) { transition-delay: 0s; }
-.schedule .s-row:nth-child(2) { transition-delay: .05s; }
-.schedule .s-row:nth-child(3) { transition-delay: .1s; }
-.schedule .s-row:nth-child(4) { transition-delay: .15s; }
-.schedule .s-row:nth-child(5) { transition-delay: .2s; }
-.schedule .s-row:nth-child(6) { transition-delay: .25s; }
-.schedule .s-row:nth-child(7) { transition-delay: .3s; }
+.sched-legend span { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); font-weight: 600; }
+.sched-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+.sched-legend .dot.hi { background: #ff6b4a; }
+.sched-legend .dot.md { background: var(--gold); }
+.sched-legend .dot.lo { background: #6ad991; }
+.sched-legend .today-badge {
+    font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    color: #0b0b09; background: var(--gold); padding: 4px 10px; border-radius: 100px; margin-left: auto;
+}
+.today-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    color: #0b0b09; background: var(--gold); padding: 3px 10px; border-radius: 100px; margin-left: 10px;
+    vertical-align: middle;
+}
 
 /* Pricing */
 .pricing { background: var(--surface); }
@@ -545,15 +556,112 @@ footer p { color: var(--muted); font-size: 13.5px; }
         <div class="sec-head reveal">
             <div class="eyebrow">Расписание</div>
             <h2>Групповые тренировки <em>на неделю</em></h2>
+            <p>Выбери день и время — и записывайся через Telegram. Золотым подсвечен сегодняшний день.</p>
         </div>
-        <div class="list">
-            <div class="s-row reveal"><div class="d">Понедельник</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Свободно</div></div>
-            <div class="s-row reveal"><div class="d">Вторник</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>ММА</span></div><div class="status">Свободно</div></div>
-            <div class="s-row reveal"><div class="d">Среда</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
-            <div class="s-row reveal"><div class="d">Четверг</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Почти полн</div></div>
-            <div class="s-row reveal"><div class="d">Пятница</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
-            <div class="s-row reveal"><div class="d">Суббота</div><div class="times"><span class="t"><b>10:00</b>Функц.</span><span class="t hot"><b>12:00</b>Йога</span><span class="t"><b>14:00</b>Бокс</span></div><div class="status">Свободно</div></div>
-            <div class="s-row reveal"><div class="d">Воскресенье</div><div class="times"><span class="t hot"><b>11:00</b>Йога</span><span class="t"><b>13:00</b>Стретч.</span></div><div class="status">Свободно</div></div>
+        <div class="sched-scroll reveal">
+            <div class="sched-table">
+                <div class="sched-head">
+                    <div class="s-cell">День</div>
+                    <div class="s-cell">08:00</div>
+                    <div class="s-cell">09:00</div>
+                    <div class="s-cell">10:00</div>
+                    <div class="s-cell">11:00</div>
+                    <div class="s-cell">12:00</div>
+                    <div class="s-cell">13:00</div>
+                    <div class="s-cell">14:00</div>
+                    <div class="s-cell">19:00</div>
+                    <div class="s-cell">20:30</div>
+                </div>
+                <div class="sched-row">
+                    <div class="s-cell day d">Понедельник</div>
+                    <div class="s-cell cls"><span class="int hi"></span>HIIT</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int md"></span>Сила</div>
+                    <div class="s-cell cls"><span class="int hi"></span>Бокс</div>
+                </div>
+                <div class="sched-row">
+                    <div class="s-cell day d">Вторник</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int lo"></span>Йога</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int md"></span>Функц.</div>
+                    <div class="s-cell cls"><span class="int hi"></span>ММА</div>
+                </div>
+                <div class="sched-row">
+                    <div class="s-cell day d">Среда</div>
+                    <div class="s-cell cls"><span class="int hi"></span>HIIT</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int md"></span>Сила</div>
+                    <div class="s-cell cls"><span class="int md"></span>Перс.</div>
+                </div>
+                <div class="sched-row">
+                    <div class="s-cell day d">Четверг</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int lo"></span>Йога</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int md"></span>Функц.</div>
+                    <div class="s-cell cls"><span class="int hi"></span>Бокс</div>
+                </div>
+                <div class="sched-row">
+                    <div class="s-cell day d">Пятница</div>
+                    <div class="s-cell cls"><span class="int hi"></span>HIIT</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int md"></span>Сила</div>
+                    <div class="s-cell cls"><span class="int md"></span>Перс.</div>
+                </div>
+                <div class="sched-row weekend">
+                    <div class="s-cell day d">Суббота</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int md"></span>Функц.</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int lo"></span>Йога</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int hi"></span>Бокс</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                </div>
+                <div class="sched-row weekend">
+                    <div class="s-cell day d">Воскресенье</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int lo"></span>Йога</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell cls"><span class="int lo"></span>Стретч.</div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                    <div class="s-cell"></div>
+                </div>
+            </div>
+        </div>
+        <div class="sched-legend reveal">
+            <span><span class="dot hi"></span>Высокая интенсивность</span>
+            <span><span class="dot md"></span>Средняя</span>
+            <span><span class="dot lo"></span>Восстановление</span>
         </div>
     </div>
 </section>
@@ -807,11 +915,15 @@ document.querySelectorAll(".g-item").forEach(item => {
     const names = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
     const todayName = names[new Date().getDay()];
     rows.forEach(row => {
-        const d = row.querySelector(".d");
+        const d = row.querySelector(".d, .day");
         if (d && d.textContent.trim().toLowerCase().startsWith(todayName.toLowerCase())) {
             row.classList.add("today");
-            const st = row.querySelector(".status");
-            if (st) st.textContent = "Сегодня";
+            if (!d.querySelector(".today-badge")) {
+                const badge = document.createElement("span");
+                badge.className = "today-badge";
+                badge.textContent = "Сегодня";
+                d.appendChild(badge);
+            }
         }
     });
 })();
