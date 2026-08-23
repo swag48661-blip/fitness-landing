@@ -227,19 +227,6 @@ section { padding: 120px 0; position: relative; }
 .schedule .s-row:nth-child(6) { transition-delay: .25s; }
 .schedule .s-row:nth-child(7) { transition-delay: .3s; }
 
-/* Trainers */
-.trainers { background: var(--bg); }
-.trainers .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-.trainer { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4; transition: transform .35s, box-shadow .35s; }
-.trainer:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
-.trainer img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s, filter .7s; filter: saturate(.85); }
-.trainer:hover img { transform: scale(1.06); filter: saturate(1); }
-.trainer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(5,5,4,.85) 100%); }
-.trainer .body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 26px; color: var(--text); }
-.trainer .body .role { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-.trainer .body h3 { font-size: 28px; }
-.trainer .body p { font-size: 13.5px; color: var(--muted); margin-top: 6px; }
-
 /* Pricing */
 .pricing { background: var(--surface); }
 .p-table-wrap { overflow-x: auto; }
@@ -290,7 +277,8 @@ section { padding: 120px 0; position: relative; }
 .faq-q:hover { color: var(--gold-hi); }
 .faq-q .icon {
     width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; position: relative;
-    border: 1.5px solid var(--line); transition: transform .4s cubic-bezier(.2,.7,.2,1), background .3s, border-color .3s;
+    border: 1.5px solid var(--line);
+    transition: transform .4s cubic-bezier(.2,.7,.2,1), background .3s, border-color .3s;
 }
 .faq-q .icon::before, .faq-q .icon::after {
     content: ""; position: absolute; top: 50%; left: 50%; background: var(--gold);
@@ -298,14 +286,21 @@ section { padding: 120px 0; position: relative; }
 }
 .faq-q .icon::before { width: 14px; height: 2px; }
 .faq-q .icon::after { width: 2px; height: 14px; }
-.faq-item.open .faq-q .icon { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); }
+.faq-item.open .faq-q .icon { transform: rotate(135deg); background: var(--gold); border-color: var(--gold); }
 .faq-item.open .faq-q .icon::after { transform: translate(-50%, -50%) scaleY(0); }
 .faq-q:hover .icon { border-color: var(--gold); }
 .faq-a {
-    height: 0; overflow: hidden; color: var(--muted); font-size: 15px; line-height: 1.7;
-    transition: height .45s cubic-bezier(.22,1,.36,1);
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .5s cubic-bezier(.22, 1, .36, 1);
+    color: var(--muted); font-size: 15px; line-height: 1.7;
 }
-.faq-a > div { padding-bottom: 24px; padding-right: 46px; opacity: 0; transform: translateY(8px); transition: opacity .35s ease .14s, transform .35s ease .14s; }
+.faq-item.open .faq-a { grid-template-rows: 1fr; }
+.faq-a > div {
+    overflow: hidden; min-height: 0;
+    padding-bottom: 24px; padding-right: 46px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .4s ease .1s, transform .4s ease .1s;
+}
 .faq-item.open .faq-a > div { opacity: 1; transform: none; }
 
 /* Testimonials */
@@ -407,7 +402,7 @@ footer p { color: var(--muted); font-size: 13.5px; }
     .hero-media img { max-width: 420px; margin: 0 auto; }
     .hero-media .card { left: 10%; }
     .features .rows { grid-template-columns: 1fr; }
-    .programs .grid, .trainers .grid { grid-template-columns: 1fr 1fr; }
+    .programs .grid { grid-template-columns: 1fr 1fr; }
     .cta-box .inner { grid-template-columns: 1fr; gap: 40px; }
     .s-row { grid-template-columns: 1fr; gap: 8px; }
 }
@@ -415,7 +410,7 @@ footer p { color: var(--muted); font-size: 13.5px; }
     .nav-links { display: none; position: absolute; top: 84px; left: 0; right: 0; flex-direction: column; background: rgba(11,11,9,.99); padding: 24px 8%; gap: 18px; border-bottom: 1px solid var(--line); }
     .nav-links.open { display: flex; }
     .burger { display: block; }
-    .programs .grid, .trainers .grid { grid-template-columns: 1fr; }
+    .programs .grid { grid-template-columns: 1fr; }
     .gallery .grid { grid-template-columns: 1fr 1fr; }
     .g-item.big { grid-column: span 2; }
     .booking-row { grid-template-columns: 1fr; }
@@ -437,7 +432,6 @@ footer p { color: var(--muted); font-size: 13.5px; }
             <a href="#programs">Тренировки</a>
             <a href="#gallery">Клуб</a>
             <a href="#schedule">Расписание</a>
-            <a href="#trainers">Тренеры</a>
             <a href="#pricing">Тарифы</a>
             <a href="#faq">Вопросы</a>
         </div>
@@ -564,29 +558,7 @@ footer p { color: var(--muted); font-size: 13.5px; }
     </div>
 </section>
 
-<section class="trainers" id="trainers">
-    <div class="container">
-        <div class="sec-head reveal">
-            <div class="eyebrow">Тренеры</div>
-            <h2>Команда, которая <em>ведёт к цели</em></h2>
-            <p>Действующие спортсмены с опытом работы от 5 лет.</p>
-        </div>
-        <div class="grid">
-            <div class="trainer reveal">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Анна Соколова" loading="lazy">
-                <div class="body"><div class="role">Функциональный тренинг · HIIT</div><h3>Анна Соколова</h3><p>Мастер спорта по кроссфиту. Помогает худеть без голода.</p></div>
-            </div>
-            <div class="trainer reveal">
-                <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80" alt="Максим Орлов" loading="lazy">
-                <div class="body"><div class="role">Силовой тренинг</div><h3>Максим Орлов</h3><p>КМС по пауэрлифтингу. Строит программы для силы.</p></div>
-            </div>
-            <div class="trainer reveal">
-                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80" alt="Кира Лебедева" loading="lazy">
-                <div class="body"><div class="role">Йога · Растяжка</div><h3>Кира Лебедева</h3><p>Сертифицированный инструктор. Работает с осанкой.</p></div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <section class="pricing" id="pricing">
     <div class="container">
@@ -847,32 +819,15 @@ document.querySelectorAll(".g-item").forEach(item => {
 // FAQ smooth accordion
 document.querySelectorAll(".faq-item").forEach(item => {
     const q = item.querySelector(".faq-q");
-    const a = item.querySelector(".faq-a");
-    if (!q || !a) return;
+    if (!q) return;
     q.addEventListener("click", () => {
         const isOpen = item.classList.contains("open");
-        document.querySelectorAll(".faq-item.open").forEach(openItem => {
-            if (openItem !== item) closeFaq(openItem);
+        document.querySelectorAll(".faq-item.open").forEach(o => {
+            if (o !== item) o.classList.remove("open");
         });
-        if (isOpen) closeFaq(item); else openFaq(item);
+        item.classList.toggle("open", !isOpen);
     });
 });
-function openFaq(item) {
-    const a = item.querySelector(".faq-a");
-    item.classList.add("open");
-    a.style.height = "0px";
-    requestAnimationFrame(() => {
-        a.style.height = a.scrollHeight + "px";
-    });
-}
-function closeFaq(item) {
-    const a = item.querySelector(".faq-a");
-    item.classList.remove("open");
-    a.style.height = a.scrollHeight + "px";
-    requestAnimationFrame(() => {
-        a.style.height = "0px";
-    });
-}
 
 const slides = document.querySelectorAll(".testi-slide");
 const dotsWrap = document.getElementById("dots");
