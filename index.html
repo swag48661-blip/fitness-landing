@@ -828,9 +828,51 @@ document.querySelectorAll(".g-item").forEach(item => {
     });
 });
 
-document.querySelectorAll(".faq-q").forEach(q => {
-    q.addEventListener("click", () => q.parentElement.classList.toggle("open"));
+// Schedule: highlight today
+(function () {
+    const rows = document.querySelectorAll(".sched-row, .s-row");
+    if (!rows.length) return;
+    const names = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    const todayName = names[new Date().getDay()];
+    rows.forEach(row => {
+        const d = row.querySelector(".d");
+        if (d && d.textContent.trim().toLowerCase().startsWith(todayName.toLowerCase())) {
+            row.classList.add("today");
+            const st = row.querySelector(".status");
+            if (st) st.textContent = "Сегодня";
+        }
+    });
+})();
+
+// FAQ smooth accordion
+document.querySelectorAll(".faq-item").forEach(item => {
+    const q = item.querySelector(".faq-q");
+    const a = item.querySelector(".faq-a");
+    if (!q || !a) return;
+    q.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item.open").forEach(openItem => {
+            if (openItem !== item) closeFaq(openItem);
+        });
+        if (isOpen) closeFaq(item); else openFaq(item);
+    });
 });
+function openFaq(item) {
+    const a = item.querySelector(".faq-a");
+    item.classList.add("open");
+    a.style.height = "0px";
+    requestAnimationFrame(() => {
+        a.style.height = a.scrollHeight + "px";
+    });
+}
+function closeFaq(item) {
+    const a = item.querySelector(".faq-a");
+    item.classList.remove("open");
+    a.style.height = a.scrollHeight + "px";
+    requestAnimationFrame(() => {
+        a.style.height = "0px";
+    });
+}
 
 const slides = document.querySelectorAll(".testi-slide");
 const dotsWrap = document.getElementById("dots");
