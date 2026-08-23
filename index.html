@@ -229,6 +229,11 @@ section { padding: 96px 0; position: relative; }
 }
 .testi:hover { transform: translateY(-6px); border-color: rgba(204, 255, 51, .3); }
 .testi .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 14px; }
+.testi .result {
+    display: inline-block; margin-bottom: 12px; padding: 5px 12px; border-radius: 100px;
+    background: rgba(204, 255, 51, .1); border: 1px solid rgba(204, 255, 51, .35);
+    color: var(--accent); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+}
 .testi p { color: var(--muted); font-size: 14px; }
 .testi .who { margin-top: 18px; display: flex; align-items: center; gap: 12px; }
 .testi .who .av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: grid; place-items: center; font-weight: 700; color: #0b0f0d; }
@@ -507,18 +512,21 @@ footer p { color: var(--muted); font-size: 13px; }
         <div class="testi-grid">
             <div class="testi reveal">
                 <div class="stars">★★★★★</div>
-                <p>За 3 месяца ушла 12 кг. Тренировки по расписанию, тренер всегда на связи, запись через бота — вообще не напрягает.</p>
-                <div class="who"><div class="av">И</div><div><b>Ирина</b><span>участник 8 месяцев</span></div></div>
+                <div class="result">−12 кг за 3 месяца</div>
+                <p>Сначала не верила, что похудею без изнурительных диет. Составили программу по калориям, три тренировки в неделю — за 3 месяца минус 12 кг. Запись через бота, тренер всегда на связи. Это реально работает.</p>
+                <div class="who"><div class="av">И</div><div><b>Ирина</b><span>HR-менеджер, Москва</span></div></div>
             </div>
             <div class="testi reveal">
                 <div class="stars">★★★★★</div>
-                <p>Зал маленький, но очень живой. Группы небольшие — тренер реально успевает поправить технику. Первый зал, куда хочу возвращаться.</p>
-                <div class="who"><div class="av">Д</div><div><b>Дмитрий</b><span>силовой тренинг</span></div></div>
+                <div class="result">+15 кг на жиме за 5 месяцев</div>
+                <p>Прошёл десяток залов — этот единственный, куда хочется возвращаться. Группы до 10 человек, тренер реально следит за техникой, а не просто считает повторения. Спина наконец перестала болеть за компом.</p>
+                <div class="who"><div class="av">Д</div><div><b>Дмитрий</b><span>разработчик, СПб</span></div></div>
             </div>
             <div class="testi reveal">
                 <div class="stars">★★★★★</div>
-                <p>Записываюсь на йогу прямо из Telegram-бота, вижу свободные места и оплачиваю картой. Очень удобно, ничего не скачивать.</p>
-                <div class="who"><div class="av">А</div><div><b>Алёна</b><span>йога, стретчинг</span></div></div>
+                <div class="result">осанка за 2 месяца</div>
+                <p>Йога и стретчинг после работы — лучшая разгрузка за день. Ходила ради растяжки, а заодно ушла сутулость и перестала болеть спина. Отдельный плюс — запись из Telegram: вижу свободные места и оплачиваю картой за 10 секунд.</p>
+                <div class="who"><div class="av">А</div><div><b>Алёна</b><span>дизайнер, Казань</span></div></div>
             </div>
         </div>
     </div>
