@@ -3,412 +3,381 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PULSE FIT — фитнес-студия | Первая тренировка бесплатно</title>
-<meta name="description" content="Функциональный зал, групповые и персональные тренировки. Первая тренировка бесплатно. Запись через Telegram за 15 минут.">
-<meta property="og:title" content="PULSE FIT — фитнес-студия">
+<title>Pulse Fit — фитнес-клуб | Первая тренировка бесплатно</title>
+<meta name="description" content="Функциональный зал, групповые и персональные тренировки. Первая тренировка бесплатно. Запись через Telegram.">
+<meta property="og:title" content="Pulse Fit — фитнес-клуб">
 <meta property="og:description" content="Первая тренировка бесплатно. Функциональный зал, HIIT, йога, силовой тренинг.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a0a0a'/><text x='50' y='72' font-size='52' font-family='Arial' font-weight='900' text-anchor='middle' fill='%23ccff33'>PF</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23f4c400'/><text x='50' y='72' font-size='50' font-family='Georgia,serif' font-weight='bold' text-anchor='middle' fill='%23181712'>PF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg: #0a0a0a;
-    --panel: #141414;
-    --p-2: #1a1a1a;
-    --line: #262626;
-    --text: #f5f5f5;
-    --muted: #9c9c9c;
-    --accent: #ccff33;
-    --accent-2: #9cc400;
+    --bg: #faf7f1;
+    --cream: #fffdf8;
+    --soft: #f1ece1;
+    --ink: #181712;
+    --muted: #7a756a;
+    --line: #e7e1d4;
+    --gold: #f4c400;
+    --gold-deep: #d9a900;
+    --radius: 22px;
+    --shadow: 0 30px 70px rgba(24, 23, 18, .10);
+    --shadow-sm: 0 12px 34px rgba(24, 23, 18, .07);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Manrope", system-ui, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--ink);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, .display { font-family: "Bebas Neue", sans-serif; font-weight: 400; text-transform: uppercase; }
+h1, h2, h3, .serif { font-family: "Playfair Display", Georgia, serif; font-weight: 600; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-.container { width: min(1160px, 92%); margin-inline: auto; }
-section { padding: 110px 0; position: relative; }
-.sec-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 18px;
+.container { width: min(1200px, 90%); margin-inline: auto; }
+section { padding: 120px 0; position: relative; }
+.eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-deep);
 }
-.sec-tag::before { content: ""; width: 34px; height: 3px; background: var(--accent); }
-.sec-head h2 { font-size: clamp(42px, 6vw, 72px); line-height: .95; letter-spacing: .01em; }
-.sec-head p { color: var(--muted); margin-top: 16px; max-width: 560px; }
+.eyebrow::before { content: ""; width: 36px; height: 1px; background: var(--gold-deep); }
+.sec-head { margin-bottom: 60px; }
+.sec-head h2 { font-size: clamp(38px, 5vw, 64px); line-height: 1.06; max-width: 720px; }
+.sec-head h2 em { font-style: italic; color: var(--gold-deep); }
+.sec-head p { color: var(--muted); margin-top: 18px; max-width: 520px; }
 
 /* Scroll progress */
-#progress {
-    position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 200;
-    width: 0; transition: width .1s;
-}
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 300; width: 0; }
 
 /* Nav */
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s, box-shadow .3s; }
-.nav.scrolled { background: rgba(10, 10, 10, .96); box-shadow: 0 8px 30px rgba(0, 0, 0, .5); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.nav-logo { font-family: "Bebas Neue"; font-size: 28px; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; }
-.nav-logo .mark { width: 14px; height: 30px; background: var(--accent); transform: skew(-14deg); display: inline-block; }
-.nav-links { display: flex; gap: 26px; font-size: 14px; font-weight: 600; color: #c9c9c9; }
-.nav-links a:hover { color: var(--accent); }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; transition: background .35s, box-shadow .35s, padding .35s; }
+.nav.scrolled { background: rgba(250, 247, 241, .92); backdrop-filter: blur(12px); box-shadow: 0 10px 40px rgba(24,23,18,.06); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 84px; }
+.nav-logo { font-family: "Playfair Display"; font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+.nav-logo .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); display: inline-block; box-shadow: 0 0 0 5px rgba(244,196,0,.18); }
+.nav-links { display: flex; gap: 34px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.nav-links a { position: relative; transition: color .2s; }
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .3s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 .nav-cta {
-    padding: 11px 22px; background: var(--accent); color: #000;
-    font-weight: 800; font-size: 14px; letter-spacing: .02em;
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-    transition: background .2s;
+    padding: 12px 26px; border-radius: 100px;
+    background: var(--ink); color: var(--cream); font-weight: 700; font-size: 13.5px;
+    transition: background .25s, transform .25s, box-shadow .25s;
 }
-.nav-cta:hover { background: var(--accent-2); }
+.nav-cta:hover { background: var(--gold); color: var(--ink); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(244,196,0,.4); }
 .burger { display: none; background: none; border: 0; cursor: pointer; z-index: 10; }
-.burger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
-.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger span { display: block; width: 24px; height: 2px; background: var(--ink); margin: 6px 0; transition: .3s; }
+.burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .burger.open span:nth-child(2) { opacity: 0; }
-.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* Hero */
-.hero {
-    min-height: 100vh; display: flex; align-items: center;
-    padding-top: 72px; position: relative;
-    background:
-        linear-gradient(100deg, rgba(10,10,10,.95) 0%, rgba(10,10,10,.65) 55%, rgba(10,10,10,.25) 100%),
-        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
-}
-.hero::after {
-    content: "PULSE"; position: absolute; right: -40px; bottom: -30px; z-index: 0;
-    font-family: "Bebas Neue"; font-size: 30vw; line-height: 1; color: rgba(255,255,255,.04);
-    pointer-events: none;
-}
-.hero .container { position: relative; z-index: 1; }
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 90px; overflow: hidden; }
+.hero .grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; }
 .hero .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--accent); color: #000; font-weight: 800; font-size: 13px;
-    padding: 8px 16px; margin-bottom: 26px;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 10px 100%);
-    animation: pulse-glow 2.4s ease-in-out infinite;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink); background: var(--gold); padding: 9px 18px; border-radius: 100px;
 }
-.hero h1 { font-size: clamp(56px, 9vw, 120px); line-height: .9; max-width: 820px; position: relative; }
-.hero h1 .char { display: inline-block; opacity: 0; transform: translateY(40px); animation: char-in .6s cubic-bezier(.2,.7,.2,1) forwards; }
-@keyframes char-in { to { opacity: 1; transform: none; } }
-.hero p { margin-top: 24px; font-size: 18px; color: #c9c9c9; max-width: 540px; font-weight: 500; opacity: 0; transform: translateY(20px); animation: rise .8s ease forwards; animation-delay: .7s; }
+.hero h1 { font-size: clamp(46px, 6.4vw, 88px); line-height: 1.02; margin: 26px 0; max-width: 640px; }
+.hero h1 em { font-style: italic; color: var(--gold-deep); }
+.hero h1 .line { display: block; overflow: hidden; }
+.hero h1 .line span { display: block; transform: translateY(110%); animation: line-up .9s cubic-bezier(.2,.7,.2,1) forwards; }
+.hero h1 .line:nth-child(2) span { animation-delay: .12s; }
+.hero h1 .line:nth-child(3) span { animation-delay: .24s; }
+@keyframes line-up { to { transform: none; } }
+.hero p { font-size: 17px; color: var(--muted); max-width: 440px; opacity: 0; transform: translateY(18px); animation: rise .8s ease forwards; animation-delay: .5s; }
 @keyframes rise { to { opacity: 1; transform: none; } }
-.hero-actions { display: flex; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
+.hero-actions { display: flex; align-items: center; gap: 26px; margin-top: 38px; opacity: 0; transform: translateY(18px); animation: rise .8s ease forwards; animation-delay: .65s; flex-wrap: wrap; }
 .btn {
-    display: inline-block; padding: 17px 34px; font-weight: 800; font-size: 15px;
-    cursor: pointer; border: 0; position: relative; overflow: hidden;
-    transition: transform .15s, box-shadow .15s, background .2s;
+    display: inline-block; padding: 17px 34px; border-radius: 100px;
+    font-weight: 700; font-size: 14.5px; cursor: pointer; border: 0; position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s, background .25s, color .25s;
 }
-.btn::after {
-    content: ""; position: absolute; inset: 0; border-radius: inherit;
-    background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.35), transparent 40%);
-    opacity: 0; transition: opacity .3s; pointer-events: none;
+.btn-solid { background: var(--ink); color: var(--cream); }
+.btn-solid:hover { background: var(--gold); color: var(--ink); transform: translateY(-3px); box-shadow: 0 16px 36px rgba(244,196,0,.35); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--cream); transform: translateY(-3px); }
+.btn .rip { position: absolute; border-radius: 50%; background: rgba(255,255,255,.5); transform: scale(0); animation: rip .6s ease-out; pointer-events: none; }
+@keyframes rip { to { transform: scale(4); opacity: 0; } }
+.link { font-size: 14.5px; font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--gold); padding-bottom: 3px; transition: color .2s, border-color .2s; }
+.link:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+.hero-stats { display: flex; gap: 0; margin-top: 70px; border-top: 1px solid var(--line); padding-top: 34px; max-width: 620px; opacity: 0; transform: translateY(18px); animation: rise .8s ease forwards; animation-delay: .8s; }
+.hero-stats .item { flex: 1; position: relative; }
+.hero-stats .item + .item { padding-left: 34px; }
+.hero-stats .item + .item::before { content: ""; position: absolute; left: 0; top: 8%; bottom: 8%; width: 1px; background: var(--line); }
+.hero-stats .num { font-family: "Playfair Display"; font-size: 44px; font-weight: 600; line-height: 1; color: var(--ink); }
+.hero-stats .num .suf { color: var(--gold-deep); }
+.hero-stats .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; }
+.hero-media { position: relative; }
+.hero-media .ring {
+    position: absolute; inset: -26px; border-radius: 50%; z-index: 0;
+    background: radial-gradient(circle, rgba(244,196,0,.18), transparent 65%);
 }
-.btn:hover::after { opacity: 1; }
-.btn .rip { position: absolute; border-radius: 50%; background: rgba(255,255,255,.5); transform: scale(0); animation: ripple .6s ease-out; pointer-events: none; }
-.btn-primary { background: var(--accent); color: #000; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); position: relative; }
-.btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); }
-.btn-ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.35); }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-.hero-stats { display: flex; gap: 56px; margin-top: 64px; flex-wrap: wrap; }
-.hero-stats .item { display: flex; align-items: baseline; gap: 12px; }
-.hero-stats .num { font-family: "Bebas Neue"; font-size: 54px; color: var(--accent); line-height: 1; }
-.hero-stats .lbl { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; max-width: 90px; }
+.hero-media img {
+    position: relative; z-index: 1; width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 50% 50% 22px 22px; box-shadow: var(--shadow);
+}
+.hero-media .card {
+    position: absolute; z-index: 2; left: -30px; bottom: 40px;
+    background: var(--cream); border-radius: 16px; box-shadow: var(--shadow-sm);
+    padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+    animation: float 5s ease-in-out infinite;
+}
+.hero-media .card b { display: block; font-family: "Playfair Display"; font-size: 20px; }
+.hero-media .card span { font-size: 12px; color: var(--muted); }
+.hero-media .card .ic { width: 42px; height: 42px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; font-size: 18px; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 /* Marquee */
-.marquee { background: var(--accent); color: #000; overflow: hidden; padding: 12px 0; position: relative; z-index: 5; }
-.marquee .track { display: flex; gap: 40px; white-space: nowrap; animation: scroll 22s linear infinite; font-weight: 800; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
-.marquee .track span { display: flex; align-items: center; gap: 40px; }
-.marquee .track span::after { content: "★"; }
-@keyframes scroll { to { transform: translateX(-50%); } }
-@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(204,255,51,.3); } 50% { box-shadow: 0 0 40px rgba(204,255,51,.6), 0 0 80px rgba(204,255,51,.2); } }
-@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-@keyframes border-glow { 0%, 100% { border-color: var(--accent); } 50% { border-color: var(--accent-2); } }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes ripple { to { transform: scale(4); opacity: 0; } }
+.marquee { background: var(--ink); color: var(--cream); overflow: hidden; padding: 16px 0; }
+.marquee .track { display: flex; white-space: nowrap; animation: mar 28s linear infinite; font-family: "Playfair Display"; font-style: italic; font-size: 20px; }
+.marquee .track span { display: flex; align-items: center; gap: 46px; padding-right: 46px; }
+.marquee .track span::after { content: "✦"; color: var(--gold); }
+@keyframes mar { to { transform: translateX(-50%); } }
 
 /* Features */
-.features { background: var(--panel); overflow: hidden; }
-.features::before {
-    content: "01"; position: absolute; top: 24px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(204,255,51,.06); line-height: 1; pointer-events: none;
-}
-.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.feature {
-    background: var(--p-2); padding: 30px 26px; position: relative;
-    transition: transform .2s, background .2s; overflow: hidden;
-}
-.feature::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); transform: scaleY(0); transition: transform .25s; }
-.feature:hover { transform: translateY(-6px); background: #202020; }
-.feature:hover::before { transform: scaleY(1); }
-.feature .idx { font-family: "Bebas Neue"; font-size: 40px; color: var(--accent); line-height: 1; margin-bottom: 18px; }
-.feature h3 { font-size: 26px; margin-bottom: 10px; }
-.feature p { color: var(--muted); font-size: 14px; }
+.features { background: var(--cream); }
+.features .rows { display: grid; grid-template-columns: 1fr 1fr; gap: 0 70px; }
+.f-row { padding: 34px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 54px 1fr; gap: 18px; transition: padding-left .3s, background .3s; }
+.f-row:hover { padding-left: 14px; }
+.f-row .idx { font-family: "Playfair Display"; font-style: italic; font-size: 22px; color: var(--gold-deep); }
+.f-row h3 { font-size: 24px; margin-bottom: 8px; }
+.f-row p { color: var(--muted); font-size: 14.5px; }
 
 /* Programs */
-.programs::before {
-    content: "02"; position: absolute; top: 20px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
+.programs .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.program {
+    background: var(--cream); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm); transition: transform .35s, box-shadow .35s;
 }
-.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.program { position: relative; overflow: hidden; aspect-ratio: 4/5; display: block; isolation: isolate; transition: transform .2s; }
-.program:hover { transform: translateY(-8px); }
-.program img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.3) brightness(.8); transition: transform .6s, filter .6s; position: relative; z-index: -1; }
-.program img.loaded { animation: img-reveal 1s ease; }
-@keyframes img-reveal { 0% { opacity: 0; } 100% { opacity: 1; } }
-.program:hover img { transform: scale(1.08); filter: grayscale(0) brightness(.95); }
-.program::after {
-    content: ""; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(180deg, transparent 35%, rgba(10,10,10,.95) 100%);
+.program:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.program .media { position: relative; overflow: hidden; aspect-ratio: 4/3.4; }
+.program .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
+.program:hover .media img { transform: scale(1.07); }
+.program .media .tag {
+    position: absolute; top: 16px; left: 16px; z-index: 2;
+    font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--gold); color: var(--ink); padding: 6px 12px; border-radius: 100px;
 }
-.program .body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px; }
-.program .body h3 { font-size: 34px; }
-.program .body p { color: #c9c9c9; font-size: 14px; max-height: 0; opacity: 0; overflow: hidden; transition: .3s; }
-.program:hover .body p { max-height: 70px; opacity: 1; margin-top: 6px; }
-.program .arrow {
-    position: absolute; top: 16px; right: 16px; z-index: 2;
-    width: 40px; height: 40px; background: var(--accent); color: #000;
-    display: grid; place-items: center; font-size: 20px; font-weight: 900;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    opacity: 0; transform: translateY(-8px); transition: .3s;
-}
-.program:hover .arrow { opacity: 1; transform: none; }
+.program .body { padding: 24px 26px 28px; }
+.program .body h3 { font-size: 25px; }
+.program .body p { color: var(--muted); font-size: 14px; margin: 8px 0 16px; }
+.program .body .go { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: var(--ink); }
+.program .body .go i { font-style: normal; transition: transform .3s; }
+.program:hover .body .go i { transform: translateX(6px); }
 
 /* Gallery */
-.gallery { background: var(--panel); padding-bottom: 80px; }
-.gallery::before {
-    content: "03"; position: absolute; top: 20px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(204,255,51,.06); line-height: 1; pointer-events: none;
-}
-.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; }
-.gallery-item { position: relative; overflow: hidden; cursor: pointer; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
-.gallery-item:hover img { transform: scale(1.07); }
-.gallery-item::after { content: "🔍"; position: absolute; bottom: 12px; right: 12px; font-size: 18px; opacity: 0; transition: .3s; }
-.gallery-item:hover::after { opacity: 1; }
-.gallery-item.big { grid-column: span 2; grid-row: span 2; }
+.gallery { background: var(--soft); }
+.gallery .grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; gap: 16px; }
+.g-item { position: relative; border-radius: 18px; overflow: hidden; cursor: pointer; }
+.g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
+.g-item:hover img { transform: scale(1.06); }
+.g-item.big { grid-column: span 2; grid-row: span 2; }
+.g-item::after { content: "↗"; position: absolute; right: 14px; bottom: 12px; width: 38px; height: 38px; border-radius: 50%; background: rgba(250,247,241,.9); display: grid; place-items: center; font-size: 16px; opacity: 0; transform: translateY(8px); transition: .3s; }
+.g-item:hover::after { opacity: 1; transform: none; }
 
 /* Lightbox */
-.lightbox {
-    display: none; position: fixed; inset: 0; z-index: 300;
-    background: rgba(0,0,0,.94); place-items: center; cursor: zoom-out;
-    padding: 24px;
-}
+.lightbox { display: none; position: fixed; inset: 0; z-index: 400; background: rgba(20,19,16,.95); place-items: center; padding: 24px; cursor: zoom-out; }
 .lightbox.open { display: grid; }
-.lightbox img { max-width: 100%; max-height: 90vh; border-radius: 12px; }
+.lightbox img { max-width: 100%; max-height: 90vh; border-radius: 16px; }
 
 /* Schedule */
-.schedule::before {
-    content: "04"; position: absolute; top: 20px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
+.schedule .list { border-top: 1px solid var(--line); }
+.s-row {
+    display: grid; grid-template-columns: 240px 1fr auto; align-items: center; gap: 24px;
+    padding: 24px 10px; border-bottom: 1px solid var(--line); transition: padding-left .3s, background .3s;
 }
-.sched-list { border-top: 1px solid var(--line); }
-.sched-row {
-    display: grid; grid-template-columns: 220px 1fr auto; align-items: center; gap: 24px;
-    padding: 20px 8px; border-bottom: 1px solid var(--line);
-    transition: background .2s, padding-left .2s;
-}
-.sched-row:hover { background: var(--panel); padding-left: 20px; }
-.sched-row .d { font-family: "Bebas Neue"; font-size: 30px; color: var(--accent); }
-.sched-row .times { display: flex; gap: 26px; flex-wrap: wrap; }
-.sched-row .t { font-size: 14px; color: var(--muted); }
-.sched-row .t b { color: var(--text); font-weight: 700; margin-right: 6px; }
-.sched-row .t.hot b { color: var(--accent); }
-.sched-row .status { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+.s-row:hover { padding-left: 24px; background: var(--cream); }
+.s-row .d { font-family: "Playfair Display"; font-size: 26px; }
+.s-row .times { display: flex; gap: 30px; flex-wrap: wrap; }
+.s-row .t { font-size: 14px; color: var(--muted); }
+.s-row .t b { color: var(--ink); font-weight: 700; margin-right: 7px; }
+.s-row .t.hot b { color: var(--gold-deep); }
+.s-row .status { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep); }
 
 /* Trainers */
-.trainers::before {
-    content: "05"; position: absolute; top: 20px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(204,255,51,.06); line-height: 1; pointer-events: none;
-}
-.trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.trainer { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 3/4; transition: transform .2s; }
-.trainer:hover { transform: translateY(-8px); }
-.trainer img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.4) brightness(.75); transition: .5s; }
-.trainer:hover img { filter: grayscale(0) brightness(.95); transform: scale(1.05); }
-.trainer::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,.95) 100%); }
-.trainer .body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 22px; }
-.trainer .body h3 { font-size: 30px; }
-.trainer .role { color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin: 4px 0 8px; }
-.trainer .body p { color: #c9c9c9; font-size: 14px; }
+.trainers .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.trainer { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4; transition: transform .35s, box-shadow .35s; }
+.trainer:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.trainer img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s, filter .7s; filter: saturate(.85); }
+.trainer:hover img { transform: scale(1.06); filter: saturate(1); }
+.trainer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20,19,16,.82) 100%); }
+.trainer .body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 26px; color: var(--cream); }
+.trainer .body .role { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.trainer .body h3 { font-size: 28px; }
+.trainer .body p { font-size: 13.5px; color: rgba(255,253,248,.85); margin-top: 6px; }
 
 /* Pricing */
-.pricing { background: var(--panel); overflow: hidden; }
-.pricing::before {
-    content: "06"; position: absolute; top: 20px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(204,255,51,.06); line-height: 1; pointer-events: none;
+.pricing { background: var(--cream); }
+.p-table-wrap { overflow-x: auto; }
+.p-table {
+    min-width: 760px; border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
+    background: var(--bg); box-shadow: var(--shadow-sm);
 }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
-.price {
-    background: var(--p-2); padding: 40px 34px; display: flex; flex-direction: column; gap: 20px;
-    position: relative; transition: transform .2s;
+.p-row { display: grid; grid-template-columns: 210px 1fr 1fr 1fr; }
+.p-row > div { padding: 16px 22px; }
+.p-row > div + div { border-left: 1px solid var(--line); }
+.p-row { border-bottom: 1px solid var(--line); }
+.p-row:last-child { border-bottom: 0; }
+.p-head { border-bottom: 0 !important; position: relative; }
+.p-head > div { padding-top: 26px; padding-bottom: 20px; }
+.p-head .f-label { font-family: "Playfair Display"; font-size: 24px; font-style: italic; color: var(--muted); display: flex; align-items: flex-end; }
+.p-col { text-align: center; position: relative; }
+.p-col .name { font-family: "Playfair Display"; font-size: 26px; }
+.p-col .sub { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+.p-col.pop { background: var(--cream); }
+.p-col.pop::before {
+    content: "Популярный"; position: absolute; top: 0; left: 0; right: 0;
+    background: var(--gold); color: var(--ink); font-size: 11px; font-weight: 800;
+    letter-spacing: .14em; text-transform: uppercase; padding: 7px 0;
 }
-.price:hover { transform: translateY(-6px); }
-.price.popular { background: var(--accent); color: #000; animation: border-glow 2s ease-in-out infinite; }
-.price.popular:hover { transform: translateY(-8px); }
-.price.popular p, .price.popular li { color: rgba(0,0,0,.75); }
-.price .pname { font-family: "Bebas Neue"; font-size: 30px; }
-.price .val { font-family: "Bebas Neue"; font-size: 64px; line-height: 1; }
-.price .val small { font-family: "Inter"; font-size: 14px; font-weight: 600; color: var(--muted); }
-.price.popular .val small { color: rgba(0,0,0,.6); }
-.price ul { list-style: none; display: flex; flex-direction: column; gap: 12px; flex: 1; border-top: 1px solid var(--line); padding-top: 20px; }
-.price li { display: flex; gap: 10px; font-size: 14px; color: var(--muted); }
-.price li::before { content: "▸"; color: var(--accent); font-weight: 900; }
-.price.popular li::before { color: #000; }
-.price.popular ul { border-color: rgba(0,0,0,.25); }
-.price .btn { margin-top: auto; text-align: center; }
-.price.popular .btn { background: #000; color: #fff; }
+.p-head .p-col.pop { padding-top: 44px; }
+.p-val { font-family: "Playfair Display"; font-size: 44px; font-weight: 700; line-height: 1; }
+.p-val small { font-family: "Manrope"; font-size: 13px; font-weight: 600; color: var(--muted); }
+.p-row .f-label { font-size: 14px; color: var(--muted); display: flex; align-items: center; }
+.p-row .cell { text-align: center; font-size: 14.5px; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.p-row .cell.no { color: var(--line); }
+.p-row .cell.gold { color: var(--gold-deep); font-weight: 700; }
+.p-cta .f-label { background: var(--bg); }
+.p-cta .cell { padding: 22px; }
+.p-cta .btn { width: 100%; text-align: center; padding: 14px 20px; font-size: 13.5px; }
+.p-note { margin-top: 22px; color: var(--muted); font-size: 13.5px; display: flex; align-items: center; gap: 10px; }
+.p-note::before { content: "✓"; width: 22px; height: 22px; border-radius: 50%; background: var(--gold); color: var(--ink); display: grid; place-items: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
 
 /* FAQ */
-.faq::before {
-    content: "07"; position: absolute; top: 20px; right: 4%;
-    font-family: "Bebas Neue"; font-size: 220px; color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
-}
+.faq .list { max-width: 820px; }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-q {
-    width: 100%; background: none; border: 0; color: var(--text);
-    font-family: "Bebas Neue"; font-size: 24px; letter-spacing: .02em;
-    text-align: left; padding: 22px 0; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center;
-    transition: color .2s;
+    width: 100%; background: none; border: 0; color: var(--ink); text-align: left;
+    font-family: "Playfair Display"; font-size: 23px; font-weight: 600;
+    padding: 26px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
 }
-.faq-q:hover { color: var(--accent); }
-.faq-q .icon { font-size: 20px; transition: transform .3s; }
+.faq-q .icon { font-size: 24px; color: var(--gold-deep); transition: transform .35s; flex-shrink: 0; }
 .faq-item.open .faq-q .icon { transform: rotate(45deg); }
-.faq-a {
-    max-height: 0; overflow: hidden; transition: max-height .4s, padding .3s;
-    color: var(--muted); font-size: 15px; line-height: 1.7;
-}
-.faq-item.open .faq-a { max-height: 300px; padding-bottom: 22px; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .45s; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
 
 /* Testimonials */
-.testi-wrap { position: relative; }
-.testi-slider { overflow: hidden; }
-.testi-slide { display: none; padding: 8px 4px; }
-.testi-slide.active { display: block; animation: fade .5s ease; }
-@keyframes fade { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
-.testi-slide .quote { font-family: "Bebas Neue"; font-size: 130px; line-height: .5; color: var(--accent); }
-.testi-slide .stars { color: var(--accent); letter-spacing: 3px; margin: 18px 0; }
-.testi-slide p { font-size: clamp(20px, 2.6vw, 30px); font-weight: 500; max-width: 760px; line-height: 1.5; }
-.testi-slide .who { margin-top: 26px; font-size: 15px; }
-.testi-slide .who b { font-size: 17px; }
+.testi { text-align: center; max-width: 860px; margin: 0 auto; position: relative; }
+.testi-slide { display: none; }
+.testi-slide.active { display: block; animation: tFade .5s ease; }
+@keyframes tFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.testi-slide .mark { font-family: "Playfair Display"; font-size: 120px; line-height: .4; color: var(--gold); }
+.testi-slide .stars { color: var(--gold); letter-spacing: 4px; margin: 26px 0 20px; font-size: 18px; }
+.testi-slide p { font-family: "Playfair Display"; font-size: clamp(22px, 3vw, 34px); line-height: 1.4; font-style: italic; color: var(--ink); }
+.testi-slide .who { margin-top: 30px; font-size: 15px; }
+.testi-slide .who b { font-weight: 800; }
 .testi-slide .who span { color: var(--muted); }
-.testi-nav { display: flex; align-items: center; gap: 18px; margin-top: 34px; }
-.testi-nav button {
-    width: 52px; height: 52px; background: var(--panel); color: #fff; border: 1px solid var(--line);
-    font-size: 22px; cursor: pointer; transition: background .2s, color .2s;
-}
-.testi-nav button:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+.testi-nav { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 40px; }
+.testi-nav button { width: 50px; height: 50px; border-radius: 50%; background: transparent; border: 1.5px solid var(--line); color: var(--ink); font-size: 18px; cursor: pointer; transition: .25s; }
+.testi-nav button:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 .testi-dots { display: flex; gap: 8px; }
-.testi-dots .dot { width: 10px; height: 10px; background: var(--line); cursor: pointer; transition: background .2s; }
-.testi-dots .dot.active { background: var(--accent); }
+.testi-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); cursor: pointer; transition: .25s; }
+.testi-dots .dot.active { background: var(--gold); transform: scale(1.3); }
 
 /* CTA */
-.cta { padding-bottom: 120px; }
+.cta { padding: 0 0 120px; }
 .cta-box {
-    position: relative; padding: 80px 56px; overflow: hidden; isolation: isolate;
-    background:
-        linear-gradient(100deg, rgba(204,255,51,.06) 0%, rgba(10,10,10,.55) 60%, rgba(10,10,10,.9) 100%),
-        url("https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    background: var(--gold); border-radius: 30px; padding: 90px 64px; position: relative; overflow: hidden;
 }
-.cta-box h2 { font-size: clamp(44px, 6vw, 72px); max-width: 520px; line-height: .95; }
-.cta-box h2 em { font-style: normal; color: var(--accent); }
-.cta-box > p { color: var(--muted); margin: 18px 0 34px; max-width: 460px; }
-.booking { display: flex; flex-direction: column; gap: 12px; max-width: 480px; }
-.booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cta-box::before { content: ""; position: absolute; right: -80px; top: -80px; width: 340px; height: 340px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.cta-box::after { content: ""; position: absolute; right: 40px; bottom: -120px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,.15); }
+.cta-box .inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.cta-box h2 { font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; }
+.cta-box h2 em { font-style: italic; }
+.cta-box > .inner p { color: rgba(24,23,18,.72); margin-top: 16px; max-width: 420px; font-weight: 500; }
+.booking { display: flex; flex-direction: column; gap: 14px; }
+.booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .booking input, .booking select {
-    width: 100%; padding: 15px 16px;
-    background: rgba(0, 0, 0, .5); border: 1px solid rgba(255, 255, 255, .18);
-    color: var(--text); font-size: 15px; font-family: inherit; outline: none;
-    transition: border-color .2s;
+    width: 100%; padding: 16px 20px; border-radius: 14px; border: 0;
+    background: rgba(255,255,255,.85); color: var(--ink); font-size: 15px; font-family: inherit; outline: none;
+    transition: box-shadow .2s, transform .2s;
 }
-.booking input:focus, .booking select:focus { border-color: var(--accent); }
-.booking select option { background: #111; }
-.booking .btn { text-align: center; }
-.booking .ok {
-    display: none; padding: 16px; border: 1px solid rgba(204, 255, 51, .4);
-    background: rgba(204, 255, 51, .08); color: var(--accent); font-weight: 700; font-size: 14px;
-}
+.booking input:focus, .booking select:focus { box-shadow: 0 0 0 4px rgba(24,23,18,.14); transform: translateY(-1px); }
+.booking select option { background: #fff; }
+.booking .btn { background: var(--ink); color: var(--cream); text-align: center; }
+.booking .btn:hover { background: #000; }
+.booking .ok { display: none; padding: 16px; border-radius: 14px; background: rgba(24,23,18,.9); color: var(--gold); font-weight: 700; font-size: 14px; }
 .booking .ok.show { display: block; }
 
 /* Footer */
-footer { border-top: 1px solid var(--line); padding: 44px 0; }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-footer p { color: var(--muted); font-size: 13px; }
-.footer-links { display: flex; gap: 24px; font-size: 14px; color: var(--muted); }
-.footer-links a:hover { color: var(--accent); }
+footer { border-top: 1px solid var(--line); padding: 54px 0; }
+.f-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+footer p { color: var(--muted); font-size: 13.5px; }
+.f-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+.f-links a:hover { color: var(--ink); }
 
-/* Float telegram */
+/* Float */
 .float-tg {
-    position: fixed; right: 22px; bottom: 22px; z-index: 90;
-    width: 60px; height: 60px; border-radius: 50%;
-    background: var(--accent); display: grid; place-items: center;
-    box-shadow: 0 10px 30px rgba(204, 255, 51, .4); transition: transform .2s;
-    animation: float 3s ease-in-out infinite;
+    position: fixed; right: 24px; bottom: 24px; z-index: 150;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--ink); color: var(--gold); display: grid; place-items: center;
+    box-shadow: 0 14px 34px rgba(24,23,18,.25); transition: transform .25s, background .25s;
+    animation: float 4.5s ease-in-out infinite;
 }
-.float-tg:hover { transform: scale(1.1); }
-.float-tg svg { width: 30px; height: 30px; fill: #000; }
-
-/* Back to top */
+.float-tg:hover { transform: scale(1.1); background: var(--gold); color: var(--ink); }
+.float-tg svg { width: 28px; height: 28px; fill: currentColor; }
 .btt {
-    position: fixed; right: 22px; bottom: 92px; z-index: 89;
-    width: 44px; height: 44px; background: var(--panel); border: 1px solid var(--line);
-    color: var(--muted); display: none; place-items: center; cursor: pointer;
-    font-size: 18px; transition: background .2s, color .2s;
+    position: fixed; right: 26px; bottom: 96px; z-index: 149;
+    width: 44px; height: 44px; border-radius: 50%; background: var(--cream);
+    border: 1px solid var(--line); color: var(--ink); display: none; place-items: center;
+    cursor: pointer; font-size: 17px; transition: .25s;
 }
-.btt:hover { background: var(--accent); color: #000; border-color: var(--accent); }
-
-/* Mobile sticky CTA */
-.mobile-cta {
-    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 95;
-    background: rgba(10,10,10,.96); backdrop-filter: blur(10px);
-    border-top: 1px solid var(--line); padding: 12px 16px 16px;
-}
+.btt:hover { background: var(--ink); color: var(--gold); border-color: var(--ink); }
+.mobile-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 145; background: rgba(250,247,241,.97); backdrop-filter: blur(10px); border-top: 1px solid var(--line); padding: 12px 16px 16px; }
 .mobile-cta .btn { display: block; text-align: center; width: 100%; }
-@media (max-width: 700px) {
+@media (max-width: 760px) {
     .mobile-cta { display: block; }
-    .float-tg { bottom: 80px; }
-    .btt { bottom: 150px; }
-    .cta { padding-bottom: 160px; }
+    .float-tg { bottom: 84px; }
+    .btt { bottom: 152px; }
+    .cta { padding-bottom: 140px; }
 }
 
 /* Reveal */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.on { opacity: 1; transform: none; }
-.features-grid .feature:nth-child(1), .programs-grid .program:nth-child(1), .trainers-grid .trainer:nth-child(1), .pricing-grid .price:nth-child(1) { transition-delay: 0s; }
-.features-grid .feature:nth-child(2), .programs-grid .program:nth-child(2), .trainers-grid .trainer:nth-child(2), .pricing-grid .price:nth-child(2) { transition-delay: .08s; }
-.features-grid .feature:nth-child(3), .programs-grid .program:nth-child(3), .trainers-grid .trainer:nth-child(3), .pricing-grid .price:nth-child(3) { transition-delay: .16s; }
-.features-grid .feature:nth-child(4), .programs-grid .program:nth-child(4), .pricing-grid .price:nth-child(4) { transition-delay: .24s; }
-.programs-grid .program:nth-child(5) { transition-delay: .32s; }
-.programs-grid .program:nth-child(6) { transition-delay: .4s; }
-.faq-item:nth-child(1) { transition-delay: 0s; }
+.grid > *:nth-child(1) { transition-delay: 0s; }
+.grid > *:nth-child(2) { transition-delay: .1s; }
+.grid > *:nth-child(3) { transition-delay: .2s; }
+.grid > *:nth-child(4) { transition-delay: .3s; }
+.grid > *:nth-child(5) { transition-delay: .4s; }
+.grid > *:nth-child(6) { transition-delay: .5s; }
+.f-row:nth-child(2) { transition-delay: .06s; }
+.f-row:nth-child(3) { transition-delay: .12s; }
+.f-row:nth-child(4) { transition-delay: .18s; }
 .faq-item:nth-child(2) { transition-delay: .06s; }
 .faq-item:nth-child(3) { transition-delay: .12s; }
 .faq-item:nth-child(4) { transition-delay: .18s; }
 .faq-item:nth-child(5) { transition-delay: .24s; }
 
-@media (max-width: 900px) {
-    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; background: rgba(10,10,10,.98); padding: 22px 8%; gap: 18px; border-bottom: 1px solid var(--line); }
+@media (max-width: 980px) {
+    .hero .grid { grid-template-columns: 1fr; gap: 50px; }
+    .hero-media img { max-width: 420px; margin: 0 auto; }
+    .hero-media .card { left: 10%; }
+    .features .rows { grid-template-columns: 1fr; }
+    .programs .grid, .trainers .grid, .pricing .grid { grid-template-columns: 1fr 1fr; }
+    .cta-box .inner { grid-template-columns: 1fr; gap: 40px; }
+    .s-row { grid-template-columns: 1fr; gap: 8px; }
+}
+@media (max-width: 760px) {
+    .nav-links { display: none; position: absolute; top: 84px; left: 0; right: 0; flex-direction: column; background: rgba(250,247,241,.99); padding: 24px 8%; gap: 18px; border-bottom: 1px solid var(--line); }
     .nav-links.open { display: flex; }
     .burger { display: block; }
-    .features-grid { grid-template-columns: 1fr 1fr; }
-    .programs-grid, .trainers-grid, .pricing-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-item.big { grid-column: span 2; }
-    .sched-row { grid-template-columns: 1fr; gap: 8px; }
-    .hero-stats { gap: 28px; }
-    section { padding: 76px 0; }
-}
-@media (max-width: 560px) {
-    .features-grid { grid-template-columns: 1fr; }
-    .cta-box { padding: 56px 24px; }
+    .programs .grid, .trainers .grid, .pricing .grid { grid-template-columns: 1fr; }
+    .gallery .grid { grid-template-columns: 1fr 1fr; }
+    .g-item.big { grid-column: span 2; }
     .booking-row { grid-template-columns: 1fr; }
+    section { padding: 80px 0; }
+    .cta-box { padding: 56px 26px; }
+    .hero-stats .item + .item { padding-left: 20px; }
 }
 </style>
 </head>
@@ -418,56 +387,68 @@ footer p { color: var(--muted); font-size: 13px; }
 
 <nav class="nav" id="nav">
     <div class="container nav-inner">
-        <a href="#hero" class="nav-logo"><span class="mark"></span>PULSE&nbsp;FIT</a>
+        <a href="#hero" class="nav-logo"><span class="dot"></span>Pulse&nbsp;Fit</a>
         <div class="nav-links" id="menu">
             <a href="#features">Почему мы</a>
             <a href="#programs">Тренировки</a>
-            <a href="#gallery">Зал</a>
+            <a href="#gallery">Клуб</a>
             <a href="#schedule">Расписание</a>
             <a href="#trainers">Тренеры</a>
             <a href="#pricing">Тарифы</a>
-            <a href="#reviews">Отзывы</a>
-            <a href="#faq">FAQ</a>
+            <a href="#faq">Вопросы</a>
         </div>
-        <a class="nav-cta" href="#book">Пробная</a>
+        <a class="nav-cta" href="#book">Пробная тренировка</a>
         <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
 </nav>
 
 <header class="hero" id="hero">
-    <div class="container">
-        <div class="badge">⚡ Первая тренировка — бесплатно</div>
-        <h1 id="heroTitle"><em>Тренируйся,</em> где каждый поход в зал даёт результат</h1>
-        <p>Функциональный зал, опытные тренеры и персональные программы. Приходи на бесплатную тренировку — почувствуй разницу.</p>
-        <div class="hero-actions">
-            <a href="#book" class="btn btn-primary">Записаться бесплатно</a>
-            <a href="#pricing" class="btn btn-ghost">Смотреть тарифы</a>
+    <div class="container grid">
+        <div>
+            <span class="badge">✦ Первая тренировка бесплатно</span>
+            <h1>
+                <span class="line"><span>Форма,</span></span>
+                <span class="line"><span>за которую</span></span>
+                <span class="line"><span>тебя уважают</span></span>
+            </h1>
+            <p>Функциональный зал, тренеры с опытом и персональные программы. Приходи на бесплатную тренировку — и почувствуй разницу.</p>
+            <div class="hero-actions">
+                <a href="#book" class="btn btn-solid">Записаться бесплатно</a>
+                <a href="#pricing" class="btn btn-ghost">Тарифы</a>
+            </div>
+            <div class="hero-stats">
+                <div class="item"><div class="num"><span data-count="15">0</span><span class="suf">+</span></div><div class="lbl">тренеров</div></div>
+                <div class="item"><div class="num"><span data-count="12">0</span></div><div class="lbl">направлений</div></div>
+                <div class="item"><div class="num"><span data-count="800">0</span><span class="suf">+</span></div><div class="lbl">участников</div></div>
+            </div>
         </div>
-        <div class="hero-stats">
-            <div class="item"><div class="num"><span data-count="15">0</span>+</div><div class="lbl">тренеров</div></div>
-            <div class="item"><div class="num"><span data-count="12">0</span></div><div class="lbl">направлений</div></div>
-            <div class="item"><div class="num"><span data-count="800">0</span>+</div><div class="lbl">участников</div></div>
+        <div class="hero-media">
+            <div class="ring"></div>
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80" alt="Фитнес-клуб Pulse Fit">
+            <div class="card">
+                <div class="ic">⚡</div>
+                <div><b>Бесплатно</b><span>первая тренировка</span></div>
+            </div>
         </div>
     </div>
 </header>
 
 <div class="marquee"><div class="track">
-    <span>Первая тренировка бесплатно&nbsp;&nbsp;Функциональный зал&nbsp;&nbsp;HIIT&nbsp;&nbsp;Йога&nbsp;&nbsp;Силовой тренинг&nbsp;&nbsp;Бокс&nbsp;&nbsp;Запись через Telegram</span>
-    <span>Первая тренировка бесплатно&nbsp;&nbsp;Функциональный зал&nbsp;&nbsp;HIIT&nbsp;&nbsp;Йога&nbsp;&nbsp;Силовой тренинг&nbsp;&nbsp;Бокс&nbsp;&nbsp;Запись через Telegram</span>
+    <span>Первая тренировка бесплатно</span><span>Функциональный зал</span><span>HIIT</span><span>Йога</span><span>Силовой тренинг</span><span>Бокс</span><span>Запись через Telegram</span>
+    <span>Первая тренировка бесплатно</span><span>Функциональный зал</span><span>HIIT</span><span>Йога</span><span>Силовой тренинг</span><span>Бокс</span><span>Запись через Telegram</span>
 </div></div>
 
 <section class="features" id="features">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">Почему мы</div>
-            <h2>Зал, в который хочется возвращаться</h2>
-            <p>Никаких перегруженных фитнес-клубов — только то, что работает на твой результат.</p>
+            <div class="eyebrow">Почему мы</div>
+            <h2>Клуб, в который <em>хочется</em> возвращаться</h2>
         </div>
-        <div class="features-grid">
-            <div class="feature reveal"><div class="idx">01</div><h3>Функциональный зал</h3><p>Зона кроссфита, свободные веса, кардио-зона — всё для интенсивных тренировок.</p></div>
-            <div class="feature reveal"><div class="idx">02</div><h3>Персональные программы</h3><p>План под твою цель: похудение, сила, выносливость или форма.</p></div>
-            <div class="feature reveal"><div class="idx">03</div><h3>Тренер на каждой тренировке</h3><p>Группы до 10 человек — тебя видят и поправляют технику.</p></div>
-            <div class="feature reveal"><div class="idx">04</div><h3>Запись через Telegram</h3><p>Бронь и абонементы — в Telegram-боте. Без звонков и очередей.</p></div>
+        <div class="rows">
+            <div class="f-row reveal"><div class="idx">01</div><div><h3>Функциональный зал</h3><p>Зона кроссфита, свободные веса и кардио-зона — всё для интенсивных тренировок.</p></div></div>
+            <div class="f-row reveal"><div class="idx">02</div><div><h3>Персональные программы</h3><p>План под твою цель: похудение, сила, выносливость или форма.</p></div></div>
+            <div class="f-row reveal"><div class="idx">03</div><div><h3>Тренер на каждой тренировке</h3><p>Группы до 10 человек — тебя видят и поправляют технику.</p></div></div>
+            <div class="f-row reveal"><div class="idx">04</div><div><h3>Запись через Telegram</h3><p>Бронь и абонементы — в Telegram-боте. Без звонков и очередей.</p></div></div>
         </div>
     </div>
 </section>
@@ -475,40 +456,34 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="programs" id="programs">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">Направления</div>
-            <h2>Выбери свою тренировку</h2>
+            <div class="eyebrow">Направления</div>
+            <h2>Выбери <em>свою</em> тренировку</h2>
             <p>Групповые и персональные форматы для любого уровня подготовки.</p>
         </div>
-        <div class="programs-grid">
+        <div class="grid">
             <a href="#book" class="program reveal">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Силовые тренировки" loading="lazy">
-                <span class="arrow">→</span>
-                <div class="body"><h3>Силовой тренинг</h3><p>Свободные веса, база и прогрессия. Для силы и рельефа.</p></div>
+                <div class="media"><span class="tag">Сила</span><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Силовые тренировки" loading="lazy"></div>
+                <div class="body"><h3>Силовой тренинг</h3><p>Свободные веса, база и прогрессия. Для силы и рельефа.</p><span class="go">Записаться <i>→</i></span></div>
             </a>
             <a href="#book" class="program reveal">
-                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80" alt="Функциональный тренинг" loading="lazy">
-                <span class="arrow">→</span>
-                <div class="body"><h3>Функциональный</h3><p>Кроссфит-элементы, канаты, работа с собственным весом.</p></div>
+                <div class="media"><span class="tag">Вес тела</span><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80" alt="Функциональный тренинг" loading="lazy"></div>
+                <div class="body"><h3>Функциональный</h3><p>Кроссфит-элементы, канаты, работа с собственным весом.</p><span class="go">Записаться <i>→</i></span></div>
             </a>
             <a href="#book" class="program reveal">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80" alt="Йога и растяжка" loading="lazy">
-                <span class="arrow">→</span>
-                <div class="body"><h3>Йога и стретчинг</h3><p>Гибкость, осанка и восстановление после нагрузок.</p></div>
+                <div class="media"><span class="tag">Гибкость</span><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80" alt="Йога и растяжка" loading="lazy"></div>
+                <div class="body"><h3>Йога и стретчинг</h3><p>Гибкость, осанка и восстановление после нагрузок.</p><span class="go">Записаться <i>→</i></span></div>
             </a>
             <a href="#book" class="program reveal">
-                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="HIIT" loading="lazy">
-                <span class="arrow">→</span>
-                <div class="body"><h3>HIIT</h3><p>Интервальные тренировки для жиросжигания за 40 минут.</p></div>
+                <div class="media"><span class="tag">Интервал</span><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="HIIT" loading="lazy"></div>
+                <div class="body"><h3>HIIT</h3><p>Интервальные тренировки для жиросжигания за 40 минут.</p><span class="go">Записаться <i>→</i></span></div>
             </a>
             <a href="#book" class="program reveal">
-                <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=900&q=80" alt="Бокс" loading="lazy">
-                <span class="arrow">→</span>
-                <div class="body"><h3>Бокс и ММА</h3><p>Ударная техника, работа в парах, координация и реакция.</p></div>
+                <div class="media"><span class="tag">Боевые</span><img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=900&q=80" alt="Бокс" loading="lazy"></div>
+                <div class="body"><h3>Бокс и ММА</h3><p>Ударная техника, работа в парах, координация и реакция.</p><span class="go">Записаться <i>→</i></span></div>
             </a>
             <a href="#book" class="program reveal">
-                <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80" alt="Персональные тренировки" loading="lazy">
-                <span class="arrow">→</span>
-                <div class="body"><h3>Персонально</h3><p>Тренировка 1 на 1 с тренером под твою конкретную цель.</p></div>
+                <div class="media"><span class="tag">1 на 1</span><img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=900&q=80" alt="Персональные тренировки" loading="lazy"></div>
+                <div class="body"><h3>Персонально</h3><p>Тренировка 1 на 1 с тренером под твою конкретную цель.</p><span class="go">Записаться <i>→</i></span></div>
             </a>
         </div>
     </div>
@@ -517,16 +492,15 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="gallery" id="gallery">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">Наш зал</div>
-            <h2>Пространство, где комфортно тренироваться</h2>
-            <p>Свежий ремонт, новая техника и зонирование под любой формат тренировок.</p>
+            <div class="eyebrow">Клуб</div>
+            <h2>Пространство, в котором <em>комфортно</em> заниматься</h2>
         </div>
-        <div class="gallery-grid" id="galleryGrid">
-            <div class="gallery-item big reveal" data-src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Зал для тренировок" loading="lazy"></div>
-            <div class="gallery-item reveal" data-src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=900&q=80" alt="Стойка со свободными весами" loading="lazy"></div>
-            <div class="gallery-item reveal" data-src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=900&q=80" alt="Тренажёрная зона" loading="lazy"></div>
-            <div class="gallery-item reveal" data-src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=900&q=80" alt="Зона растяжки" loading="lazy"></div>
-            <div class="gallery-item reveal" data-src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80" alt="Зона свободных весов" loading="lazy"></div>
+        <div class="grid" id="galleryGrid">
+            <div class="g-item big reveal" data-src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80" alt="Зал для тренировок" loading="lazy"></div>
+            <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=900&q=80" alt="Стойка со свободными весами" loading="lazy"></div>
+            <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=900&q=80" alt="Тренажёрная зона" loading="lazy"></div>
+            <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?auto=format&fit=crop&w=900&q=80" alt="Зона растяжки" loading="lazy"></div>
+            <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80" alt="Зона свободных весов" loading="lazy"></div>
         </div>
     </div>
 </section>
@@ -536,17 +510,17 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="schedule" id="schedule">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">Расписание</div>
-            <h2>Групповые тренировки на неделю</h2>
+            <div class="eyebrow">Расписание</div>
+            <h2>Групповые тренировки <em>на неделю</em></h2>
         </div>
-        <div class="sched-list">
-            <div class="sched-row reveal"><div class="d">Понедельник</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Свободно</div></div>
-            <div class="sched-row reveal"><div class="d">Вторник</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>ММА</span></div><div class="status">Свободно</div></div>
-            <div class="sched-row reveal"><div class="d">Среда</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
-            <div class="sched-row reveal"><div class="d">Четверг</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Почти полн</div></div>
-            <div class="sched-row reveal"><div class="d">Пятница</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
-            <div class="sched-row reveal"><div class="d">Суббота</div><div class="times"><span class="t"><b>10:00</b>Функц.</span><span class="t hot"><b>12:00</b>Йога</span><span class="t"><b>14:00</b>Бокс</span></div><div class="status">Свободно</div></div>
-            <div class="sched-row reveal"><div class="d">Воскресенье</div><div class="times"><span class="t hot"><b>11:00</b>Йога</span><span class="t"><b>13:00</b>Стретч.</span></div><div class="status">Свободно</div></div>
+        <div class="list">
+            <div class="s-row reveal"><div class="d">Понедельник</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Свободно</div></div>
+            <div class="s-row reveal"><div class="d">Вторник</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>ММА</span></div><div class="status">Свободно</div></div>
+            <div class="s-row reveal"><div class="d">Среда</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
+            <div class="s-row reveal"><div class="d">Четверг</div><div class="times"><span class="t hot"><b>09:00</b>Йога</span><span class="t"><b>19:00</b>Функц.</span><span class="t"><b>20:30</b>Бокс</span></div><div class="status">Почти полн</div></div>
+            <div class="s-row reveal"><div class="d">Пятница</div><div class="times"><span class="t hot"><b>08:00</b>HIIT</span><span class="t"><b>19:00</b>Сила</span><span class="t"><b>20:30</b>Перс.</span></div><div class="status">Свободно</div></div>
+            <div class="s-row reveal"><div class="d">Суббота</div><div class="times"><span class="t"><b>10:00</b>Функц.</span><span class="t hot"><b>12:00</b>Йога</span><span class="t"><b>14:00</b>Бокс</span></div><div class="status">Свободно</div></div>
+            <div class="s-row reveal"><div class="d">Воскресенье</div><div class="times"><span class="t hot"><b>11:00</b>Йога</span><span class="t"><b>13:00</b>Стретч.</span></div><div class="status">Свободно</div></div>
         </div>
     </div>
 </section>
@@ -554,22 +528,22 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="trainers" id="trainers">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">Тренеры</div>
-            <h2>Команда, которая ведёт к цели</h2>
-            <p>Каждый тренер — действующий спортсмен с опытом работы от 5 лет.</p>
+            <div class="eyebrow">Тренеры</div>
+            <h2>Команда, которая <em>ведёт к цели</em></h2>
+            <p>Действующие спортсмены с опытом работы от 5 лет.</p>
         </div>
-        <div class="trainers-grid">
+        <div class="grid">
             <div class="trainer reveal">
                 <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Анна Соколова" loading="lazy">
-                <div class="body"><h3>Анна Соколова</h3><div class="role">Функциональный тренинг · HIIT</div><p>Мастер спорта по кроссфиту. Помогает худеть без голода и выгорания.</p></div>
+                <div class="body"><div class="role">Функциональный тренинг · HIIT</div><h3>Анна Соколова</h3><p>Мастер спорта по кроссфиту. Помогает худеть без голода.</p></div>
             </div>
             <div class="trainer reveal">
                 <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80" alt="Максим Орлов" loading="lazy">
-                <div class="body"><h3>Максим Орлов</h3><div class="role">Силовой тренинг</div><p>КМС по пауэрлифтингу. Строит программы для силы и рельефа.</p></div>
+                <div class="body"><div class="role">Силовой тренинг</div><h3>Максим Орлов</h3><p>КМС по пауэрлифтингу. Строит программы для силы.</p></div>
             </div>
             <div class="trainer reveal">
                 <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80" alt="Кира Лебедева" loading="lazy">
-                <div class="body"><h3>Кира Лебедева</h3><div class="role">Йога · Растяжка</div><p>Сертифицированный инструктор. Работает с осанкой и гибкостью.</p></div>
+                <div class="body"><div class="role">Йога · Растяжка</div><h3>Кира Лебедева</h3><p>Сертифицированный инструктор. Работает с осанкой.</p></div>
             </div>
         </div>
     </div>
@@ -578,104 +552,111 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="pricing" id="pricing">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">Тарифы</div>
-            <h2>Абонементы без скрытых платежей</h2>
-            <p>Заморозка и пауза по болезни — бесплатно на любом тарифе.</p>
+            <div class="eyebrow">Тарифы</div>
+            <h2>Сравни и <em>выбери</em> свой формат</h2>
+            <p>Без скрытых платежей. Заморозка и пауза по болезни — бесплатно на любом тарифе.</p>
         </div>
-        <div class="pricing-grid">
-            <div class="price reveal">
-                <div class="pname">Разовый</div>
-                <div class="val">600₽<small> / тренировка</small></div>
-                <ul>
-                    <li>1 групповая тренировка</li>
-                    <li>Зал до 22:00</li>
-                    <li>Душ и раздевалки</li>
-                    <li>Запись через Telegram</li>
-                </ul>
-                <a href="#book" class="btn btn-ghost">Выбрать</a>
-            </div>
-            <div class="price popular reveal">
-                <div class="pname">Безлимит</div>
-                <div class="val">2 900₽<small> / месяц</small></div>
-                <ul>
-                    <li>Все групповые тренировки</li>
-                    <li>Зал и кардио-зона 24/7</li>
-                    <li>Программа питания в подарок</li>
-                    <li>Заморозка 7 дней</li>
-                    <li>Запись через Telegram</li>
-                </ul>
-                <a href="#book" class="btn">Хит</a>
-            </div>
-            <div class="price reveal">
-                <div class="pname">Персональный</div>
-                <div class="val">4 500₽<small> / 8 занятий</small></div>
-                <ul>
-                    <li>8 персональных тренировок</li>
-                    <li>Индивидуальная программа</li>
-                    <li>Контроль питания</li>
-                    <li>Гибкое расписание</li>
-                </ul>
-                <a href="#book" class="btn btn-ghost">Выбрать</a>
+        <div class="p-table-wrap reveal">
+            <div class="p-table">
+                <div class="p-row p-head">
+                    <div class="f-label">Что входит</div>
+                    <div class="p-col">
+                        <div class="name">Разовый</div>
+                        <div class="sub">для знакомства</div>
+                    </div>
+                    <div class="p-col pop">
+                        <div class="name">Безлимит</div>
+                        <div class="sub">выбор большинства</div>
+                    </div>
+                    <div class="p-col">
+                        <div class="name">Персональный</div>
+                        <div class="sub">1 на 1 с тренером</div>
+                    </div>
+                </div>
+                <div class="p-row">
+                    <div class="f-label">Стоимость</div>
+                    <div class="cell"><div class="p-val">600₽<small> / тренировка</small></div></div>
+                    <div class="cell"><div class="p-val">2 900₽<small> / месяц</small></div></div>
+                    <div class="cell"><div class="p-val">4 500₽<small> / 8 занятий</small></div></div>
+                </div>
+                <div class="p-row">
+                    <div class="f-label">Групповые тренировки</div>
+                    <div class="cell">1 занятие</div>
+                    <div class="cell gold">Все направления</div>
+                    <div class="cell">По расписанию</div>
+                </div>
+                <div class="p-row">
+                    <div class="f-label">Доступ к залу</div>
+                    <div class="cell">до 22:00</div>
+                    <div class="cell gold">24 / 7</div>
+                    <div class="cell">гибкий</div>
+                </div>
+                <div class="p-row">
+                    <div class="f-label">Программа питания</div>
+                    <div class="cell no">—</div>
+                    <div class="cell gold">в подарок</div>
+                    <div class="cell">персонально</div>
+                </div>
+                <div class="p-row">
+                    <div class="f-label">Заморозка абонемента</div>
+                    <div class="cell no">—</div>
+                    <div class="cell gold">7 дней</div>
+                    <div class="cell">по договорённости</div>
+                </div>
+                <div class="p-row">
+                    <div class="f-label">Запись через Telegram</div>
+                    <div class="cell">✓</div>
+                    <div class="cell gold">✓</div>
+                    <div class="cell">✓</div>
+                </div>
+                <div class="p-row p-cta">
+                    <div class="f-label"></div>
+                    <div class="cell"><a href="#book" class="btn btn-ghost">Выбрать</a></div>
+                    <div class="cell"><a href="#book" class="btn btn-solid">Выбрать</a></div>
+                    <div class="cell"><a href="#book" class="btn btn-ghost">Выбрать</a></div>
+                </div>
             </div>
         </div>
+        <div class="p-note reveal">Действует первая бесплатная тренировка и заморозка при болезни до 14 дней.</div>
     </div>
 </section>
 
 <section class="faq" id="faq">
     <div class="container">
         <div class="sec-head reveal">
-            <div class="sec-tag">FAQ</div>
-            <h2>Часто задаваемые вопросы</h2>
+            <div class="eyebrow">Вопросы</div>
+            <h2>Часто <em>задаваемые</em> вопросы</h2>
         </div>
-        <div class="faq-list">
-            <div class="faq-item reveal">
-                <button class="faq-q">Нужна ли спортивная подготовка?<span class="icon">+</span></button>
-                <div class="faq-a"><div class="container" style="margin:0">Нет. У нас тренировки для любого уровня — от новичков до опытных. Тренер адаптирует нагрузку под тебя. Первая тренировка — диагностика и знакомство с залом.</div></div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-q">Что взять с собой на первую тренировку?<span class="icon">+</span></button>
-                <div class="faq-a"><div class="container" style="margin:0">Спортивную одежду, кроссовки, бутылку воды и полотенце. Всё остальное — шейкер, пояс — есть в зале. Если чего-то нет — тренер подскажет.</div></div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-q">Как записаться через Telegram?<span class="icon">+</span></button>
-                <div class="faq-a"><div class="container" style="margin:0">Напиши нашему боту — выбери направление, дату и время. Оплатить можно картой, СБП или Telegram Stars. Готово — ты в расписании.</div></div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-q">Можно ли заморозить абонемент?<span class="icon">+</span></button>
-                <div class="faq-a"><div class="container" style="margin:0">Да. Бесплатная заморозка до 14 дней на любом тарифе. При болезни — продлеваем без вопросов. Напиши в Telegram за 24 часа.</div></div>
-            </div>
-            <div class="faq-item reveal">
-                <button class="faq-q">Сколько человек в группе?<span class="icon">+</span></button>
-                <div class="faq-a"><div class="container" style="margin:0">До 10 человек на групповой тренировке. Это позволяет тренеру видеть каждого и поправлять технику. Персональные — 1 на 1.</div></div>
-            </div>
+        <div class="list">
+            <div class="faq-item reveal"><button class="faq-q">Нужна ли спортивная подготовка?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Нет. У нас тренировки для любого уровня — от новичков до опытных. Тренер адаптирует нагрузку под тебя.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Что взять с собой на первую тренировку?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Спортивную одежду, кроссовки, бутылку воды и полотенце. Всё остальное есть в зале.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Как записаться через Telegram?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Напиши нашему боту — выбери направление, дату и время. Оплата картой, СБП или Telegram Stars.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Можно ли заморозить абонемент?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">Да. Бесплатная заморозка до 14 дней. При болезни — продлеваем без вопросов.</div></div></div>
+            <div class="faq-item reveal"><button class="faq-q">Сколько человек в группе?<span class="icon">+</span></button><div class="faq-a"><div style="padding-right:40px">До 10 человек. Это позволяет тренеру видеть каждого и поправлять технику.</div></div></div>
         </div>
     </div>
 </section>
 
 <section class="reviews" id="reviews">
     <div class="container">
-        <div class="sec-head reveal">
-            <div class="sec-tag">Отзывы</div>
-            <h2>Что говорят участники</h2>
-        </div>
-        <div class="testi-wrap reveal">
+        <div class="testi reveal">
             <div class="testi-slider" id="slider">
                 <div class="testi-slide active">
-                    <div class="quote">“</div>
+                    <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
-                    <p>Сначала не верила, что похудею без диет. Составили программу по калориям, три тренировки в неделю — за 3 месяца минус 12 кг. Запись через бота, тренер всегда на связи.</p>
+                    <p>Составили программу по калориям, три тренировки в неделю — за 3 месяца минус 12 кг. Запись через бота, тренер всегда на связи.</p>
                     <div class="who"><b>Ирина</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>HR-менеджер, Москва</span></div>
                 </div>
                 <div class="testi-slide">
-                    <div class="quote">“</div>
+                    <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
-                    <p>Прошёл десяток залов — этот единственный, куда хочется возвращаться. Группы до 10 человек, тренер следит за техникой, а не просто считает повторения. Спина перестала болеть за компом.</p>
+                    <p>Прошёл десяток залов — этот единственный, куда хочется возвращаться. Тренер следит за техникой, а не считает повторения.</p>
                     <div class="who"><b>Дмитрий</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>разработчик, СПб</span></div>
                 </div>
                 <div class="testi-slide">
-                    <div class="quote">“</div>
+                    <div class="mark">“</div>
                     <div class="stars">★★★★★</div>
-                    <p>Йога после работы — лучшая разгрузка за день. Ходила ради растяжки, а заодно ушла сутулость и перестала болеть спина. Плюс запись из Telegram: вижу свободные места, плачу картой за 10 секунд.</p>
+                    <p>Йога после работы — лучшая разгрузка за день. Ушла сутулость и перестала болеть спина. Запись из Telegram за 10 секунд.</p>
                     <div class="who"><b>Алёна</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span>дизайнер, Казань</span></div>
                 </div>
             </div>
@@ -691,33 +672,38 @@ footer p { color: var(--muted); font-size: 13px; }
 <section class="cta" id="book">
     <div class="container">
         <div class="cta-box reveal">
-            <h2>Первая тренировка — <em>бесплатно</em></h2>
-            <p>Оставь заявку — мы запишем тебя и ответим в Telegram в течение 15 минут.</p>
-            <form class="booking" id="bookingForm">
-                <div class="booking-row">
-                    <input type="text" id="fName" placeholder="Ваше имя" required>
-                    <select id="fDir" required>
-                        <option value="" disabled selected>Направление</option>
-                        <option>Силовой тренинг</option>
-                        <option>Функциональный</option>
-                        <option>Йога / стретчинг</option>
-                        <option>HIIT</option>
-                        <option>Бокс / ММА</option>
-                        <option>Персональная</option>
-                    </select>
+            <div class="inner">
+                <div>
+                    <div class="eyebrow" style="color:var(--ink)">Пробная тренировка</div>
+                    <h2>Первая тренировка — <em>бесплатно</em></h2>
+                    <p>Оставь заявку — мы запишем тебя на пробную тренировку и ответим в Telegram в течение 15 минут.</p>
                 </div>
-                <input type="text" id="fTel" placeholder="Телефон или @telegram" required>
-                <button type="submit" class="btn btn-primary">Записаться на пробную</button>
-                <div class="ok" id="formOk">Готово! Заявка формируется — нажми «Отправить» в Telegram.</div>
-            </form>
+                <form class="booking" id="bookingForm">
+                    <div class="booking-row">
+                        <input type="text" id="fName" placeholder="Ваше имя" required>
+                        <select id="fDir" required>
+                            <option value="" disabled selected>Направление</option>
+                            <option>Силовой тренинг</option>
+                            <option>Функциональный</option>
+                            <option>Йога / стретчинг</option>
+                            <option>HIIT</option>
+                            <option>Бокс / ММА</option>
+                            <option>Персональная</option>
+                        </select>
+                    </div>
+                    <input type="text" id="fTel" placeholder="Телефон или @telegram" required>
+                    <button type="submit" class="btn">Записаться на пробную</button>
+                    <div class="ok" id="formOk">Готово! Заявка формируется — нажми «Отправить» в Telegram.</div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
 
 <footer>
-    <div class="container footer-inner">
-        <p>© 2026 PULSE FIT. Все права защищены.</p>
-        <div class="footer-links">
+    <div class="container f-inner">
+        <p>© 2026 Pulse Fit. Все права защищены.</p>
+        <div class="f-links">
             <a href="#features">Почему мы</a>
             <a href="#pricing">Тарифы</a>
             <a href="#book">Запись</a>
@@ -731,7 +717,7 @@ footer p { color: var(--muted); font-size: 13px; }
 
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Наверх">↑</button>
 
-<div class="mobile-cta"><a href="#book" class="btn btn-primary">Записаться на пробную бесплатно</a></div>
+<div class="mobile-cta"><a href="#book" class="btn btn-solid">Записаться на пробную бесплатно</a></div>
 
 <script>
 const burger = document.getElementById("burger");
@@ -755,44 +741,7 @@ window.addEventListener("scroll", () => {
     document.getElementById("btt").style.display = window.scrollY > 400 ? "grid" : "none";
 });
 
-// Hero title letter animation
-const title = document.getElementById("heroTitle");
-if (title) {
-    const nodes = Array.from(title.childNodes);
-    title.innerHTML = "";
-    nodes.forEach(node => {
-        if (node.nodeType === 3) {
-            [...node.textContent].forEach((ch, i) => {
-                const s = document.createElement("span");
-                s.className = "char";
-                s.textContent = ch === " " ? "\u00A0" : ch;
-                s.style.animationDelay = (0.1 + i * 0.028) + "s";
-                title.appendChild(s);
-            });
-        } else {
-            const copy = node.cloneNode(true);
-            const emText = copy.textContent;
-            copy.textContent = "";
-            [...emText].forEach((ch, i) => {
-                const s = document.createElement("span");
-                s.className = "char";
-                s.style.color = "var(--accent)";
-                s.textContent = ch === " " ? "\u00A0" : ch;
-                s.style.animationDelay = (0.1 + i * 0.028) + "s";
-                copy.appendChild(s);
-            });
-            title.appendChild(copy);
-        }
-    });
-}
-
-// Ripple + shine on buttons
 document.querySelectorAll(".btn").forEach(btn => {
-    btn.addEventListener("pointermove", e => {
-        const r = btn.getBoundingClientRect();
-        btn.style.setProperty("--x", ((e.clientX - r.left) / r.width * 100) + "%");
-        btn.style.setProperty("--y", ((e.clientY - r.top) / r.height * 100) + "%");
-    });
     btn.addEventListener("pointerdown", e => {
         const r = btn.getBoundingClientRect();
         const rip = document.createElement("span");
@@ -804,25 +753,6 @@ document.querySelectorAll(".btn").forEach(btn => {
         btn.appendChild(rip);
         rip.addEventListener("animationend", () => rip.remove());
     });
-});
-
-// 3D tilt on program/trainer cards
-document.querySelectorAll(".program, .trainer").forEach(card => {
-    card.addEventListener("pointermove", e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5;
-        const y = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(900px) translateY(-8px) rotateX(${-y * 8}deg) rotateY(${x * 10}deg)`;
-    });
-    card.addEventListener("pointerleave", () => {
-        card.style.transform = "";
-    });
-});
-
-// Image reveal
-document.querySelectorAll("img").forEach(img => {
-    if (img.complete) img.classList.add("loaded");
-    else img.addEventListener("load", () => img.classList.add("loaded"));
 });
 
 const io = new IntersectionObserver(entries => {
@@ -849,8 +779,7 @@ const counterIO = new IntersectionObserver(entries => {
 }, { threshold: .6 });
 document.querySelectorAll("[data-count]").forEach(el => counterIO.observe(el));
 
-// Gallery lightbox
-document.querySelectorAll(".gallery-item").forEach(item => {
+document.querySelectorAll(".g-item").forEach(item => {
     item.addEventListener("click", () => {
         const src = item.dataset.src;
         if (src) {
@@ -860,14 +789,10 @@ document.querySelectorAll(".gallery-item").forEach(item => {
     });
 });
 
-// FAQ accordion
 document.querySelectorAll(".faq-q").forEach(q => {
-    q.addEventListener("click", () => {
-        q.parentElement.classList.toggle("open");
-    });
+    q.addEventListener("click", () => q.parentElement.classList.toggle("open"));
 });
 
-// Testimonials carousel
 const slides = document.querySelectorAll(".testi-slide");
 const dotsWrap = document.getElementById("dots");
 let cur = 0;
@@ -887,10 +812,7 @@ function go(i) {
     slides[cur].classList.add("active");
     dots[cur].classList.add("active");
 }
-function restart() {
-    clearInterval(timer);
-    timer = setInterval(() => go(cur + 1), 5000);
-}
+function restart() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 5500); }
 document.getElementById("prev").addEventListener("click", () => { go(cur - 1); restart(); });
 document.getElementById("next").addEventListener("click", () => { go(cur + 1); restart(); });
 restart();
