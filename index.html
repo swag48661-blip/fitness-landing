@@ -193,15 +193,39 @@ section { padding: 120px 0; position: relative; }
 .schedule .list { border-top: 1px solid var(--line); }
 .s-row {
     display: grid; grid-template-columns: 240px 1fr auto; align-items: center; gap: 24px;
-    padding: 24px 10px; border-bottom: 1px solid var(--line); transition: padding-left .3s, background .3s;
+    padding: 24px 10px; border-bottom: 1px solid var(--line); transition: padding-left .3s, background .3s, box-shadow .3s;
 }
 .s-row:hover { padding-left: 24px; background: var(--surface-2); }
+.s-row.today { background: rgba(244,196,0,.05); box-shadow: inset 3px 0 0 var(--gold); }
+.s-row.today .d { color: var(--gold-hi); }
 .s-row .d { font-family: "Playfair Display"; font-size: 26px; }
 .s-row .times { display: flex; gap: 30px; flex-wrap: wrap; }
 .s-row .t { font-size: 14px; color: var(--muted); }
 .s-row .t b { color: var(--text); font-weight: 700; margin-right: 7px; }
 .s-row .t.hot b { color: var(--gold-hi); }
-.s-row .status { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.s-row .t.hot b::after {
+    content: ""; position: absolute; margin-left: 8px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+    animation: dot-pulse 1.6s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(244,196,0,.45); }
+    50% { box-shadow: 0 0 0 7px rgba(244,196,0,0); }
+}
+.s-row .t.hot b { position: relative; }
+.s-row .status {
+    padding: 7px 14px; border-radius: 100px; font-size: 11px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+    background: rgba(244,196,0,.1); border: 1px solid rgba(244,196,0,.25); color: var(--gold);
+}
+.s-row .status.full { background: rgba(255,217,61,.12); border-color: rgba(255,217,61,.35); color: var(--gold-hi); }
+.schedule .s-row:nth-child(1) { transition-delay: 0s; }
+.schedule .s-row:nth-child(2) { transition-delay: .05s; }
+.schedule .s-row:nth-child(3) { transition-delay: .1s; }
+.schedule .s-row:nth-child(4) { transition-delay: .15s; }
+.schedule .s-row:nth-child(5) { transition-delay: .2s; }
+.schedule .s-row:nth-child(6) { transition-delay: .25s; }
+.schedule .s-row:nth-child(7) { transition-delay: .3s; }
 
 /* Trainers */
 .trainers { background: var(--bg); }
@@ -255,16 +279,34 @@ section { padding: 120px 0; position: relative; }
 /* FAQ */
 .faq { background: var(--bg); }
 .faq .list { max-width: 820px; }
-.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); transition: background .3s, padding-left .3s; }
+.faq-item:hover { padding-left: 10px; }
 .faq-q {
     width: 100%; background: none; border: 0; color: var(--text); text-align: left;
     font-family: "Playfair Display"; font-size: 23px; font-weight: 600;
     padding: 26px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    transition: color .25s;
 }
-.faq-q .icon { font-size: 24px; color: var(--gold); transition: transform .35s; flex-shrink: 0; }
-.faq-item.open .faq-q .icon { transform: rotate(45deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height .45s; color: var(--muted); font-size: 15px; line-height: 1.7; }
-.faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+.faq-q:hover { color: var(--gold-hi); }
+.faq-q .icon {
+    width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; position: relative;
+    border: 1.5px solid var(--line); transition: transform .4s cubic-bezier(.2,.7,.2,1), background .3s, border-color .3s;
+}
+.faq-q .icon::before, .faq-q .icon::after {
+    content: ""; position: absolute; top: 50%; left: 50%; background: var(--gold);
+    transform: translate(-50%, -50%); transition: transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.faq-q .icon::before { width: 14px; height: 2px; }
+.faq-q .icon::after { width: 2px; height: 14px; }
+.faq-item.open .faq-q .icon { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); }
+.faq-item.open .faq-q .icon::after { transform: translate(-50%, -50%) scaleY(0); }
+.faq-q:hover .icon { border-color: var(--gold); }
+.faq-a {
+    height: 0; overflow: hidden; color: var(--muted); font-size: 15px; line-height: 1.7;
+    transition: height .45s cubic-bezier(.22,1,.36,1);
+}
+.faq-a > div { padding-bottom: 24px; padding-right: 46px; opacity: 0; transform: translateY(8px); transition: opacity .35s ease .14s, transform .35s ease .14s; }
+.faq-item.open .faq-a > div { opacity: 1; transform: none; }
 
 /* Testimonials */
 .reviews { background: var(--surface); }
